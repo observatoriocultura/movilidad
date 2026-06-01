@@ -5,10 +5,14 @@ import { vistasContenidos } from './constants'
 import VistasNav from './parts/VistasNav.vue'
 import InicioVue from './vistas/InicioVue.vue'
 import RespuestasView from './vistas/RespuestasView.vue'
+import PrimerHallazgo from './vistas/PrimerHallazgo.vue'
+import SegundoHallazgo from './vistas/SegundoHallazgo.vue'
 
 const componentesContenido = {
   inicio: InicioVue,
   respuestas: RespuestasView,
+  primer_hallazgo: PrimerHallazgo,
+  segundo_hallazgo: SegundoHallazgo,
 }
 
 const route = useRoute()

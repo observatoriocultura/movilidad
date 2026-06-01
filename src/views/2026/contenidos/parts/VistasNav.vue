@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import { vistasContenidos } from '../constants'
 
 defineProps({
@@ -7,6 +8,8 @@ defineProps({
     required: true,
   },
 })
+
+const vistasVisibles = computed(() => vistasContenidos.filter((vista) => vista.display !== false))
 </script>
 
 <template>
@@ -16,7 +19,7 @@ defineProps({
     </RouterLink>
 
     <RouterLink
-      v-for="vista in vistasContenidos"
+      v-for="vista in vistasVisibles"
       :key="vista.key"
       class="contenidos-menu__dot"
       :class="{ 'contenidos-menu__dot--active': vista.key === activeKey }"

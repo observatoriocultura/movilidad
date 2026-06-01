@@ -5,6 +5,7 @@ export const vistasContenidos = [
         'title': 'Inicio',
         'nombre_vista': 'InicioView',
         'label': 'Inicio',
+        'display': true,
     },
     {
         'number': 1020,
@@ -12,5 +13,30 @@ export const vistasContenidos = [
         'title': 'Respuestas',
         'nombre_vista': 'RespuestasView',
         'label': 'Respuestas',
+        'display': true,
+    },
+    {
+        'number': 1025,
+        'key': 'que_buscamos_1',
+        'title': 'Qué buscamos 1',
+        'nombre_vista': 'QueBuscamos1View',
+        'label': 'Qué buscamos',
+        'display': false,
+    },
+    {
+        'number': 1030,
+        'key': 'primer_hallazgo',
+        'title': 'Primer hallazgo',
+        'nombre_vista': 'PrimerHallazgo',
+        'label': 'Primer hallazgo',
+        'display': true,
+    },
+    {
+        'number': 1035,
+        'key': 'segundo_hallazgo',
+        'title': 'Segundo hallazgo',
+        'nombre_vista': 'SegundoHallazgo',
+        'label': 'Segundo hallazgo',
+        'display': true,
     },
 ];
