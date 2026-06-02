@@ -5,27 +5,21 @@ import 'photoswipe/style.css'
 
 const imageBase = `${import.meta.env.BASE_URL}2026/tablero_1/images/`
 
-const imagenesPrimerHallazgo = [
+const imagenesTercerHallazgo = [
   {
-    src: `${imageBase}primer-hallazgo-1.jpg`,
-    alt: 'Registro visual asociado al primer hallazgo de movilidad',
-    width: 1920,
-    height: 1032,
-  },
-  {
-    src: `${imageBase}primer-hallazgo-2.jpg`,
-    alt: 'Escena urbana asociada al comportamiento vial del primer hallazgo',
+    src: `${imageBase}tercer-hallazgo-1.jpg`,
+    alt: 'Registro visual asociado al tercer hallazgo de movilidad',
     width: 1920,
     height: 1032,
   },
 ]
 
-const galeriaPrimerHallazgo = ref(null)
+const galeriaTercerHallazgo = ref(null)
 let lightbox = null
 
 onMounted(() => {
   lightbox = new PhotoSwipeLightbox({
-    gallery: galeriaPrimerHallazgo.value,
+    gallery: galeriaTercerHallazgo.value,
     children: 'a',
     pswpModule: () => import('photoswipe'),
   })
@@ -40,62 +34,62 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <main class="primer-hallazgo">
-    <header class="primer-hallazgo__header">
-      <p class="primer-hallazgo__eyebrow">Primer hallazgo</p>
+  <main class="tercer-hallazgo">
+    <header class="tercer-hallazgo__header">
+      <p class="tercer-hallazgo__eyebrow">Tercer hallazgo</p>
 
-      <h1>Sabemos más de lo que creemos, pero eso no cambia lo que hacemos</h1>
+      <h1>Muchas conductas “incorrectas” en realidad son soluciones</h1>
 
-      <p class="primer-hallazgo__subtitle">
-        El caso de los motociclistas muestra una brecha clave: la norma se conoce, pero la
-        decisión real ocurre en el instante de actuar.
+      <p class="tercer-hallazgo__subtitle">
+        Algunas decisiones viales parecen simples incumplimientos. Al observarlas de cerca, también
+        revelan estrategias para resolver rápido en un entorno que no siempre ofrece alternativas
+        visibles, fáciles o confiables.
       </p>
     </header>
 
-    <section class="primer-hallazgo__column" aria-label="Conocimiento de la norma">
-      <p class="primer-hallazgo__lead">
-        Las cifras son contundentes: <strong>casi la mitad de las muertes en vía</strong> están
-        asociadas a motos.
+    <section class="tercer-hallazgo__column" aria-label="Mal parqueo como estrategia">
+      <p class="tercer-hallazgo__lead">
+        El <strong>mal parqueo</strong> es un buen ejemplo: no siempre se vive como un error, sino
+        como una forma de salir del paso.
       </p>
 
       <p>
-        Pero lo más interesante no es solo la magnitud del problema. Prácticamente todos los
-        motociclistas saben que el <strong>semáforo en rojo significa detenerse</strong>. Lo
-        reconocen, lo entienden y, en teoría, están de acuerdo.
+        A simple vista parece un problema de incumplimiento. Pero para muchos conductores es una
+        <strong>estrategia para ahorrar tiempo</strong>, resolver rápido y responder a una ciudad
+        donde las opciones legales existen, pero no siempre se perciben como suficientes.
       </p>
 
-      <p class="primer-hallazgo__question">Entonces, ¿por qué no se detienen?</p>
+      <p class="tercer-hallazgo__question">¿Qué necesidad está resolviendo esa conducta?</p>
     </section>
 
-    <section class="primer-hallazgo__column" aria-label="Brecha entre saber y hacer">
+    <section class="tercer-hallazgo__column" aria-label="Decisiones al final de la noche">
       <p>
-        La respuesta no está solo en la norma, sino en el momento. Cuando el semáforo cambia a
-        amarillo se activa otra lógica: el <strong>afán</strong>, la
-        <strong>confianza excesiva</strong>, la percepción de que
-        <strong>todos lo hacen</strong> y un entorno que no siempre sanciona.
+        Algo similar ocurre con la <strong>embriaguez al volante</strong>. La mayoría sabe que no
+        debe manejar después de tomar, pero muchas personas terminan haciéndolo porque no planearon
+        cómo regresar.
       </p>
 
       <p>
-        En ese instante, la decisión no pasa por lo que se sabe, sino por lo que se
-        <strong>siente</strong>, se <strong>percibe</strong> y se
-        <strong>normaliza</strong> en la vía.
+        La decisión aparece al final de la noche, justo cuando la capacidad de elegir bien está más
+        afectada. El problema no nace solo en la norma, sino en la
+        <strong>falta de preparación previa</strong>.
       </p>
 
-      <p class="primer-hallazgo__closing">
-        La brecha no está entre <strong>no saber</strong> y <strong>saber</strong>, sino entre
-        <strong>saber</strong> y <strong>hacer</strong>.
+      <p class="tercer-hallazgo__closing">
+        Para cambiar la conducta, hay que entender la <strong>solución práctica</strong> que la
+        persona cree estar encontrando.
       </p>
     </section>
 
     <div
-      ref="galeriaPrimerHallazgo"
-      class="primer-hallazgo__media"
-      aria-label="Imágenes del primer hallazgo"
+      ref="galeriaTercerHallazgo"
+      class="tercer-hallazgo__media"
+      aria-label="Imagen del tercer hallazgo"
     >
       <a
-        v-for="imagen in imagenesPrimerHallazgo"
+        v-for="imagen in imagenesTercerHallazgo"
         :key="imagen.src"
-        class="primer-hallazgo__figure"
+        class="tercer-hallazgo__figure"
         :href="imagen.src"
         :data-pswp-width="imagen.width"
         :data-pswp-height="imagen.height"
@@ -110,7 +104,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-.primer-hallazgo {
+.tercer-hallazgo {
   height: calc(100svh - 115px);
   width: 100%;
   padding: 24px 38px;
@@ -128,17 +122,17 @@ onBeforeUnmount(() => {
   color: #1b1c11;
 }
 
-.primer-hallazgo__header,
-.primer-hallazgo__column {
+.tercer-hallazgo__header,
+.tercer-hallazgo__column {
   min-width: 0;
   align-self: center;
 }
 
-.primer-hallazgo__header {
+.tercer-hallazgo__header {
   grid-row: 1 / 3;
 }
 
-.primer-hallazgo__eyebrow {
+.tercer-hallazgo__eyebrow {
   margin: 0 0 14px;
   color: #5a6400;
   font-family: var(--body, system-ui, sans-serif);
@@ -149,7 +143,7 @@ onBeforeUnmount(() => {
   text-transform: uppercase;
 }
 
-.primer-hallazgo h1 {
+.tercer-hallazgo h1 {
   margin: 0;
   color: #1b1c11;
   font-family: var(--heading, system-ui, sans-serif);
@@ -159,7 +153,7 @@ onBeforeUnmount(() => {
   letter-spacing: 0;
 }
 
-.primer-hallazgo__subtitle {
+.tercer-hallazgo__subtitle {
   margin: 18px 0 0;
   color: #464834;
   font-family: var(--body, system-ui, sans-serif);
@@ -167,7 +161,7 @@ onBeforeUnmount(() => {
   line-height: 1.36;
 }
 
-.primer-hallazgo__column p {
+.tercer-hallazgo__column p {
   margin: 0;
   color: #303125;
   font-family: var(--body, system-ui, sans-serif);
@@ -176,29 +170,29 @@ onBeforeUnmount(() => {
   letter-spacing: 0;
 }
 
-.primer-hallazgo__column p + p {
+.tercer-hallazgo__column p + p {
   margin-top: 11px;
 }
 
-.primer-hallazgo__lead,
-.primer-hallazgo__question,
-.primer-hallazgo__closing {
+.tercer-hallazgo__lead,
+.tercer-hallazgo__question,
+.tercer-hallazgo__closing {
   font-family: var(--heading, system-ui, sans-serif) !important;
   font-weight: 800;
 }
 
-.primer-hallazgo__lead {
+.tercer-hallazgo__lead {
   font-size: clamp(18px, 1.42vw, 22px) !important;
   line-height: 1.16 !important;
   color: #1b1c11 !important;
 }
 
-.primer-hallazgo strong {
+.tercer-hallazgo strong {
   color: #4e5600;
   font-weight: 800;
 }
 
-.primer-hallazgo__question {
+.tercer-hallazgo__question {
   padding: 11px 13px;
   border-left: 6px solid #bed000;
   background: rgba(240, 239, 220, 0.92);
@@ -207,25 +201,25 @@ onBeforeUnmount(() => {
   line-height: 1.18 !important;
 }
 
-.primer-hallazgo__closing {
+.tercer-hallazgo__closing {
   padding: 11px 13px;
   border-radius: 8px;
   background: #f0efdc;
   color: #1b1c11 !important;
 }
 
-.primer-hallazgo__media {
+.tercer-hallazgo__media {
   grid-column: 2 / 4;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   align-self: end;
 }
 
-.primer-hallazgo__figure {
+.tercer-hallazgo__figure {
   width: 100%;
   min-width: 0;
-  aspect-ratio: 16 / 6;
+  aspect-ratio: 16 / 4.8;
   overflow: hidden;
   border-radius: 8px;
   background: #e5e6d2;
@@ -233,7 +227,7 @@ onBeforeUnmount(() => {
   display: block;
 }
 
-.primer-hallazgo__figure img {
+.tercer-hallazgo__figure img {
   width: 100%;
   height: 100%;
   display: block;
@@ -241,18 +235,18 @@ onBeforeUnmount(() => {
   transition: transform 180ms ease;
 }
 
-.primer-hallazgo__figure:hover img,
-.primer-hallazgo__figure:focus-visible img {
+.tercer-hallazgo__figure:hover img,
+.tercer-hallazgo__figure:focus-visible img {
   transform: scale(1.04);
 }
 
-.primer-hallazgo__figure:focus-visible {
+.tercer-hallazgo__figure:focus-visible {
   outline: 3px solid #5a6400;
   outline-offset: 3px;
 }
 
 @media (max-width: 860px) {
-  .primer-hallazgo {
+  .tercer-hallazgo {
     height: auto;
     min-height: 100svh;
     padding: 24px;
@@ -263,28 +257,22 @@ onBeforeUnmount(() => {
     border-left-width: 6px;
   }
 
-  .primer-hallazgo__header,
-  .primer-hallazgo__column {
+  .tercer-hallazgo__header,
+  .tercer-hallazgo__column {
     align-self: auto;
   }
 
-  .primer-hallazgo__header,
-  .primer-hallazgo__media {
+  .tercer-hallazgo__header,
+  .tercer-hallazgo__media {
     grid-column: auto;
     grid-row: auto;
   }
 
-  .primer-hallazgo__media {
+  .tercer-hallazgo__media {
     max-width: 520px;
   }
-}
 
-@media (max-width: 575.98px) {
-  .primer-hallazgo__media {
-    grid-template-columns: 1fr;
-  }
-
-  .primer-hallazgo__figure {
+  .tercer-hallazgo__figure {
     aspect-ratio: 16 / 8;
   }
 }

@@ -39,4 +39,20 @@ export const vistasContenidos = [
         'label': 'Segundo hallazgo',
         'display': true,
     },
+    {
+        'number': 1040,
+        'key': 'tercer_hallazgo',
+        'title': 'Tercer hallazgo',
+        'nombre_vista': 'TercerHallazgo',
+        'label': 'Tercer hallazgo',
+        'display': true,
+    },
+    {
+        'number': 1045,
+        'key': 'motociclistas',
+        'title': 'Motociclistas',
+        'nombre_vista': 'MotociclistasView',
+        'label': 'Motociclistas',
+        'display': true,
+    },
 ];

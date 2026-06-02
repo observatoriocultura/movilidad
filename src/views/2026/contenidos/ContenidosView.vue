@@ -7,12 +7,16 @@ import InicioVue from './vistas/InicioVue.vue'
 import RespuestasView from './vistas/RespuestasView.vue'
 import PrimerHallazgo from './vistas/PrimerHallazgo.vue'
 import SegundoHallazgo from './vistas/SegundoHallazgo.vue'
+import TercerHallazgo from './vistas/TercerHallazgo.vue'
+import MotociclistasView from './vistas/MotociclistasView.vue'
 
 const componentesContenido = {
   inicio: InicioVue,
   respuestas: RespuestasView,
   primer_hallazgo: PrimerHallazgo,
   segundo_hallazgo: SegundoHallazgo,
+  tercer_hallazgo: TercerHallazgo,
+  motociclistas: MotociclistasView,
 }
 
 const route = useRoute()

@@ -3,15 +3,17 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 import 'photoswipe/style.css'
 
+const imageBase = `${import.meta.env.BASE_URL}2026/tablero_1/images/`
+
 const imagenesSegundoHallazgo = [
   {
-    src: '/2026/tablero_1/images/segundo-hallazgo-1.jpg',
+    src: `${imageBase}segundo-hallazgo-1.jpg`,
     alt: 'Registro visual asociado al segundo hallazgo de movilidad',
     width: 989,
     height: 660,
   },
   {
-    src: '/2026/tablero_1/images/segundo-hallazgo-2.jpg',
+    src: `${imageBase}segundo-hallazgo-2.jpg`,
     alt: 'Escena urbana asociada a la convivencia entre actores viales',
     width: 1292,
     height: 573,
