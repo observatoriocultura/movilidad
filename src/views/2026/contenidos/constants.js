@@ -55,4 +55,20 @@ export const vistasContenidos = [
         'label': 'Motociclistas',
         'display': true,
     },
+    {
+        'number': 1050,
+        'key': 'motociclistas_b',
+        'title': 'Motociclistas (2)',
+        'nombre_vista': 'MotociclistasBView',
+        'label': 'Motociclistas (2)',
+        'display': true,
+    },
+    {
+        'number': 1055,
+        'key': 'motociclistas_implementaciones',
+        'title': 'Motociclistas (3)',
+        'nombre_vista': 'MotociclistasImplentaciones',
+        'label': 'Motociclistas (3)',
+        'display': true,
+    },
 ];

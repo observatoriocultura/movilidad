@@ -1,5 +1,5 @@
 <script setup>
-import { computed, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { vistasContenidos } from './constants'
 import VistasNav from './parts/VistasNav.vue'
@@ -9,6 +9,8 @@ import PrimerHallazgo from './vistas/PrimerHallazgo.vue'
 import SegundoHallazgo from './vistas/SegundoHallazgo.vue'
 import TercerHallazgo from './vistas/TercerHallazgo.vue'
 import MotociclistasView from './vistas/MotociclistasView.vue'
+import MotociclistasBView from './vistas/MotociclistasViewB.vue'
+import MotociclistasImplementaciones from './vistas/MotociclistasImplementaciones.vue'
 
 const componentesContenido = {
   inicio: InicioVue,
@@ -17,12 +19,17 @@ const componentesContenido = {
   segundo_hallazgo: SegundoHallazgo,
   tercer_hallazgo: TercerHallazgo,
   motociclistas: MotociclistasView,
+  motociclistas_b: MotociclistasBView,
+  motociclistas_implementaciones: MotociclistasImplementaciones,  
 }
 
 const route = useRoute()
 const router = useRouter()
 const vistaPorDefecto = vistasContenidos[0]?.key ?? 'inicio'
 const keysValidas = new Set(vistasContenidos.map((vista) => vista.key))
+const vistasNavegables = vistasContenidos.filter(
+  (vista) => vista.display !== false && componentesContenido[vista.key],
+)
 
 const vistaActiva = computed(() => {
   const key = route.params.key
@@ -32,6 +39,46 @@ const vistaActiva = computed(() => {
 })
 
 const componenteActivo = computed(() => componentesContenido[vistaActiva.value] ?? null)
+
+const cambiarVista = (direccion) => {
+  const indiceActivo = vistasNavegables.findIndex((vista) => vista.key === vistaActiva.value)
+  const indiceDestino = indiceActivo + direccion
+  const vistaDestino = vistasNavegables[indiceDestino]
+
+  if (!vistaDestino) return
+
+  router.push({ name: 'contenidos', params: { key: vistaDestino.key } })
+}
+
+const esCampoEditable = (elemento) => {
+  if (!elemento) return false
+
+  const tagName = elemento.tagName?.toLowerCase()
+
+  return (
+    elemento.isContentEditable ||
+    tagName === 'input' ||
+    tagName === 'textarea' ||
+    tagName === 'select'
+  )
+}
+
+const hayGaleriaActiva = () => Boolean(document.querySelector('.pswp.pswp--open, .pswp[aria-modal="true"]'))
+
+const manejarTeclas = (event) => {
+  if (event.defaultPrevented || hayGaleriaActiva()) return
+  if (esCampoEditable(event.target)) return
+
+  if (event.key === 'ArrowRight') {
+    event.preventDefault()
+    cambiarVista(1)
+  }
+
+  if (event.key === 'ArrowLeft') {
+    event.preventDefault()
+    cambiarVista(-1)
+  }
+}
 
 watch(
   () => route.params.key,
@@ -44,6 +91,14 @@ watch(
   },
   { immediate: true },
 )
+
+onMounted(() => {
+  window.addEventListener('keydown', manejarTeclas)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', manejarTeclas)
+})
 </script>
 
 <template>
