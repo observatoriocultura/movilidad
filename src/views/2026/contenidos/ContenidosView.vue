@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import './contenidos.css'
 import { vistasContenidos } from './constants'
 import VistasNav from './parts/VistasNav.vue'
 import InicioVue from './vistas/InicioVue.vue'
@@ -11,6 +12,8 @@ import TercerHallazgo from './vistas/TercerHallazgo.vue'
 import MotociclistasView from './vistas/MotociclistasView.vue'
 import MotociclistasBView from './vistas/MotociclistasViewB.vue'
 import MotociclistasImplementaciones from './vistas/MotociclistasImplementaciones.vue'
+import EmpatiaA from './vistas/EmpatiaA.vue'
+import EmpatiaB from './vistas/EmpatiaB.vue'
 
 const componentesContenido = {
   inicio: InicioVue,
@@ -21,6 +24,8 @@ const componentesContenido = {
   motociclistas: MotociclistasView,
   motociclistas_b: MotociclistasBView,
   motociclistas_implementaciones: MotociclistasImplementaciones,  
+  empatia_a: EmpatiaA,
+  empatia_b: EmpatiaB,
 }
 
 const route = useRoute()
@@ -115,7 +120,7 @@ onBeforeUnmount(() => {
 .contenidos-view {
   min-height: 100svh;
   padding: 5px 0px;
-  background: #FAFAFA;
+  background: var(--contenidos-fondo);
 }
 
 .contenidos-view__panel {

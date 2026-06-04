@@ -71,4 +71,20 @@ export const vistasContenidos = [
         'label': 'Motociclistas (3)',
         'display': true,
     },
+    {
+        'number': 1060,
+        'key': 'empatia_a',
+        'title': 'Empatía (1)',
+        'nombre_vista': 'EmpatiaA',
+        'label': 'Empatía (1)',
+        'display': true,
+    },
+    {
+        'number': 1065,
+        'key': 'empatia_b',
+        'title': 'Empatía (2)',
+        'nombre_vista': 'EmpatiaB',
+        'label': 'Empatía (2)',
+        'display': true,
+    },
 ];

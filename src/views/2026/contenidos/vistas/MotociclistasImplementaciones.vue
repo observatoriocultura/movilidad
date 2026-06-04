@@ -31,19 +31,19 @@ const acciones = [
 
 const documentos = [
   {
-    titulo: 'Documento de diseño de estrategia',
+    titulo: 'Diseño de estrategia',
     url: 'https://docs.google.com/document/d/1GNVctZw1LFEa6qLw-Zmebt71hmYMkaL_/edit?usp=sharing&ouid=106533408026140613709&rtpof=true&sd=true',
   },
   {
-    titulo: 'Documento de protocolo de implementación acción de teatro invisible',
+    titulo: 'Protocolo de implementación acción de teatro invisible',
     url: 'https://docs.google.com/document/d/1CrTs2XrkJPDD9iObTbYoToGFcC3DrqNQ/edit?usp=sharing&ouid=106533408026140613709&rtpof=true&sd=true',
   },
   {
-    titulo: 'Documento de protocolo de implementación acción de experimentos sociales',
+    titulo: 'Protocolo de implementación acción de experimentos sociales',
     url: 'https://docs.google.com/document/d/1xIn3sgvoeDj49bL94msWujQ8CYZxNA7x/edit?usp=sharing&ouid=106533408026140613709&rtpof=true&sd=true',
   },
   {
-    titulo: 'Documento de protocolo de implementación de Circuito pedagógico',
+    titulo: 'Protocolo de implementación de Circuito pedagógico',
     url: 'https://docs.google.com/document/d/14r5HBXOHAOf54Yj5dZdSUUWjfvjB7Ou5/edit?usp=sharing&ouid=106533408026140613709&rtpof=true&sd=true',
   },
 ]
