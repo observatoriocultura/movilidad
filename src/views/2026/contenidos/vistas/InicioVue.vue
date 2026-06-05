@@ -19,7 +19,7 @@
 .inicio-vue {
   min-height: calc(100svh - 115px);
   width: 100%;
-  padding: 32px 42px;
+  padding: 42px 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,12 +33,12 @@
   width: min(100%, 1180px);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
+  gap: 24px;
 }
 
 .question-card {
-  min-height: 430px;
-  padding: 42px;
+  min-height: 380px;
+  padding: 36px;
   display: flex;
   align-items: center;
   border: 3px solid rgba(255, 255, 255, 0.92);
@@ -55,8 +55,8 @@
   margin: 0;
   color: #000000;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(32px, 3vw, 43px);
-  line-height: 1.12;
+  font-size: clamp(30px, 2.75vw, 39px);
+  line-height: 1.14;
   font-weight: 800;
   letter-spacing: 0;
 }
@@ -72,7 +72,7 @@
 @media (max-width: 900px) {
   .inicio-vue {
     min-height: 100svh;
-    padding: 24px;
+    padding: 28px 24px;
     overflow: auto;
   }
 
@@ -89,7 +89,7 @@
   }
 
   .question-card p {
-    font-size: 32px;
+    font-size: 30px;
   }
 }
 </style>

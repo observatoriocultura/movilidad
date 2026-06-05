@@ -92,7 +92,7 @@ const findings = [
 .empatia-view {
   min-height: calc(100svh - 140px);
   width: 100%;
-  padding: 22px 42px 18px;
+  padding: 32px 54px 26px;
   overflow: hidden;
   position: relative;
   background:
@@ -107,8 +107,8 @@ const findings = [
   position: absolute;
   top: 0;
   right: 0;
-  width: min(34vw, 420px);
-  height: 142px;
+  width: min(30vw, 360px);
+  height: 126px;
   opacity: 0.62;
   background-image: radial-gradient(circle, var(--color-1) 0 2px, transparent 2.5px);
   background-size: 18px 18px;
@@ -124,11 +124,11 @@ const findings = [
 
 .empatia-view__eyebrow {
   width: fit-content;
-  margin: 0 0 10px;
-  padding-bottom: 7px;
+  margin: 0 0 8px;
+  padding-bottom: 6px;
   border-bottom: 3px solid var(--color-1);
   color: var(--color-1);
-  font-size: clamp(18px, 1.6vw, 24px);
+  font-size: clamp(16px, 1.38vw, 21px);
   line-height: 1;
   font-weight: 900;
   letter-spacing: 0;
@@ -136,11 +136,11 @@ const findings = [
 }
 
 .empatia-view h1 {
-  margin: 0 0 8px;
+  margin: 0 0 7px;
   color: var(--contenidos-texto);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(38px, 4vw, 60px);
-  line-height: 1.02;
+  font-size: clamp(34px, 3.55vw, 52px);
+  line-height: 1.04;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -149,8 +149,8 @@ const findings = [
   max-width: 1120px;
   margin: 0;
   color: var(--contenidos-texto-secundario);
-  font-size: clamp(16px, 1.35vw, 21px);
-  line-height: 1.32;
+  font-size: clamp(14px, 1.16vw, 18px);
+  line-height: 1.36;
 }
 
 .empatia-view strong {
@@ -158,62 +158,62 @@ const findings = [
 }
 
 .empatia-view__problem {
-  margin-top: 26px;
-  padding-bottom: 17px;
+  margin-top: 22px;
+  padding-bottom: 14px;
   display: grid;
-  grid-template-columns: 116px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 20px;
   align-items: center;
   border-bottom: 2px solid rgba(var(--color-1-rgb), 0.42);
 }
 
 .empatia-view__icon {
-  width: 78px;
-  height: 78px;
+  width: 66px;
+  height: 66px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 2px solid var(--color-1);
   border-radius: 14px;
   color: var(--color-2);
-  font-size: 46px;
+  font-size: 38px;
 }
 
 .empatia-view__problem h2 {
   margin: 0 0 8px;
   color: var(--contenidos-texto);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(22px, 2vw, 30px);
+  font-size: clamp(19px, 1.72vw, 26px);
   line-height: 1.08;
   font-weight: 900;
 }
 
 .empatia-view__problem-title {
   max-width: 1000px;
-  margin: 0 0 12px;
+  margin: 0 0 9px;
   color: var(--color-1);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(22px, 2.35vw, 34px);
-  line-height: 1.08;
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.1;
   font-weight: 900;
 }
 
 .empatia-view__problem-copy {
   margin: 0;
   color: var(--contenidos-texto-secundario);
-  font-size: clamp(15px, 1.2vw, 19px);
-  line-height: 1.32;
+  font-size: clamp(13px, 1.02vw, 16px);
+  line-height: 1.36;
 }
 
 .empatia-view__diagnosis {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .empatia-view__diagnosis-title {
   width: min(650px, 100%);
   min-height: 44px;
-  margin-bottom: 6px;
-  padding: 6px 22px 6px 8px;
+  margin-bottom: 8px;
+  padding: 6px 20px 6px 8px;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -222,21 +222,21 @@ const findings = [
 }
 
 .empatia-view__diagnosis-title span {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 2px solid rgba(var(--color-1-rgb), 0.68);
   border-radius: 50%;
   color: var(--color-1);
-  font-size: 22px;
+  font-size: 19px;
 }
 
 .empatia-view__diagnosis-title p {
   margin: 0;
   color: var(--contenidos-texto-secundario);
-  font-size: clamp(16px, 1.35vw, 21px);
+  font-size: clamp(14px, 1.12vw, 17px);
   line-height: 1.2;
   font-style: italic;
 }
@@ -244,16 +244,16 @@ const findings = [
 .empatia-view__findings {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .finding-row {
-  min-height: 138px;
-  padding: 14px 16px 15px;
+  min-height: 124px;
+  padding: 12px 15px 13px;
   display: grid;
-  grid-template-columns: 62px minmax(0, 1fr);
+  grid-template-columns: 54px minmax(0, 1fr);
   grid-template-rows: auto minmax(0, 1fr);
-  gap: 10px 14px;
+  gap: 8px 12px;
   align-items: start;
   border: 1px solid rgba(8, 15, 37, 0.11);
   border-left: 5px solid var(--color-1);
@@ -262,19 +262,19 @@ const findings = [
 }
 
 .finding-row__icon {
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: rgba(var(--color-1-rgb), 0.12);
   color: var(--color-1);
-  font-size: 29px;
+  font-size: 24px;
 }
 
 .finding-row__stat {
-  min-height: 52px;
+  min-height: 46px;
   padding-right: 0;
   display: flex;
   align-items: baseline;
@@ -286,7 +286,7 @@ const findings = [
 .finding-row__stat strong {
   color: var(--color-4);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(30px, 2.65vw, 42px);
+  font-size: clamp(26px, 2.3vw, 36px);
   line-height: 0.95;
   font-weight: 900;
 }
@@ -294,7 +294,7 @@ const findings = [
 .finding-row__stat span {
   margin-top: 0;
   color: var(--color-4);
-  font-size: clamp(12px, 1.05vw, 16px);
+  font-size: clamp(11px, 0.9vw, 14px);
   line-height: 1.1;
   font-weight: 900;
   text-transform: uppercase;
@@ -304,8 +304,8 @@ const findings = [
   grid-column: 1 / 3;
   margin: 0;
   color: var(--contenidos-texto-secundario);
-  font-size: clamp(13px, 1vw, 16px);
-  line-height: 1.32;
+  font-size: clamp(12px, 0.9vw, 14px);
+  line-height: 1.34;
 }
 
 @media (max-width: 1100px) {
@@ -321,7 +321,7 @@ const findings = [
 
 @media (max-width: 767.98px) {
   .empatia-view {
-    padding: 24px;
+    padding: 28px 24px;
   }
 
   .empatia-view::after {
@@ -364,7 +364,7 @@ const findings = [
 
 @media (max-width: 575.98px) {
   .empatia-view {
-    padding: 20px;
+    padding: 24px 20px;
   }
 
   .finding-row p {

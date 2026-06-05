@@ -124,10 +124,10 @@ const documentos = [
 .motociclistas-implementaciones {
   min-height: calc(100svh - 115px);
   width: 100%;
-  padding: 24px 50px 28px;
+  padding: 34px 58px 32px;
   display: grid;
-  grid-template-columns: minmax(500px, 1fr) 34px minmax(500px, 0.92fr);
-  gap: 26px;
+  grid-template-columns: minmax(470px, 1fr) 30px minmax(470px, 0.92fr);
+  gap: 24px;
   overflow: hidden;
   background:
     radial-gradient(circle at 48% 2%, rgba(190, 208, 0, 0.14), transparent 7%),
@@ -136,11 +136,11 @@ const documentos = [
 }
 
 .implementaciones-panel__eyebrow {
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   color: #a7ba00;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(30px, 3vw, 42px);
-  line-height: 0.92;
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 0.96;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -150,16 +150,16 @@ const documentos = [
   margin: 0;
   color: #070d35;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(30px, 2.72vw, 42px);
+  font-size: clamp(27px, 2.35vw, 36px);
   line-height: 1;
   font-weight: 900;
   letter-spacing: 0;
 }
 
 .section-mark {
-  width: 110px;
-  height: 6px;
-  margin: 13px 0 16px;
+  width: 96px;
+  height: 5px;
+  margin: 11px 0 14px;
   display: block;
   border-radius: 999px;
   background: #bed000;
@@ -178,7 +178,7 @@ const documentos = [
   background: #bed000;
   color: #ffffff;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(18px, 1.45vw, 25px);
+  font-size: clamp(16px, 1.22vw, 21px);
   line-height: 1;
   font-weight: 900;
   text-align: center;
@@ -186,7 +186,7 @@ const documentos = [
 }
 
 .implementaciones-table__head > div {
-  padding: 18px 20px;
+  padding: 15px 18px;
 }
 
 .implementaciones-table__head > div + div,
@@ -195,7 +195,7 @@ const documentos = [
 }
 
 .action-row {
-  min-height: 185px;
+  min-height: 158px;
   display: grid;
   grid-template-columns: 0.96fr 1.04fr;
 }
@@ -205,16 +205,16 @@ const documentos = [
 }
 
 .action-row__name {
-  padding: 28px 28px;
+  padding: 22px 24px;
   display: grid;
-  grid-template-columns: 76px minmax(0, 1fr);
-  gap: 26px;
+  grid-template-columns: 66px minmax(0, 1fr);
+  gap: 20px;
   align-items: center;
 }
 
 .action-row__name span {
-  width: 76px;
-  height: 76px;
+  width: 66px;
+  height: 66px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -222,7 +222,7 @@ const documentos = [
   background: #bed000;
   color: #ffffff;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: 43px;
+  font-size: 36px;
   line-height: 1;
   font-weight: 900;
 }
@@ -231,50 +231,50 @@ const documentos = [
   margin: 0;
   color: #070d35;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(20px, 1.48vw, 26px);
+  font-size: clamp(18px, 1.28vw, 23px);
   line-height: 1.25;
   font-weight: 900;
   letter-spacing: 0;
 }
 
 .action-row__scope {
-  padding: 20px 26px;
+  padding: 18px 22px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .action-row__scope p {
   margin: 0;
   display: grid;
-  grid-template-columns: 46px auto minmax(0, 1fr);
+  grid-template-columns: 40px auto minmax(0, 1fr);
   gap: 10px;
   align-items: center;
   color: #070d35;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(15px, 1.08vw, 19px);
+  font-size: clamp(13px, 0.94vw, 16px);
   line-height: 1.2;
   font-weight: 600;
 }
 
 .action-row__scope i {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: rgba(190, 208, 0, 0.13);
   color: #a7ba00;
-  font-size: 25px;
+  font-size: 21px;
   line-height: 1;
 }
 
 .action-row__scope strong {
   color: #a7ba00;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(20px, 1.34vw, 26px);
+  font-size: clamp(18px, 1.16vw, 22px);
   line-height: 1;
   font-weight: 900;
 }
@@ -305,10 +305,10 @@ const documentos = [
 }
 
 .resultados-panel {
-  padding-top: 72px;
+  padding-top: 58px;
   display: flex;
   flex-direction: column;
-  gap: 34px;
+  gap: 28px;
   min-width: 0;
 }
 
@@ -317,11 +317,11 @@ const documentos = [
 }
 
 .pending-card {
-  min-height: 150px;
-  padding: 22px 28px;
+  min-height: 124px;
+  padding: 18px 24px;
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  gap: 34px;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 26px;
   align-items: center;
   border-radius: 12px;
   background:
@@ -330,22 +330,22 @@ const documentos = [
 }
 
 .pending-card__icon {
-  width: 118px;
-  height: 118px;
+  width: 96px;
+  height: 96px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: rgba(190, 208, 0, 0.13);
   color: #a7ba00;
-  font-size: 76px;
+  font-size: 60px;
   line-height: 1;
 }
 
 .pending-card strong {
   color: #070d35;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(24px, 1.9vw, 33px);
+  font-size: clamp(21px, 1.62vw, 28px);
   line-height: 1;
   font-weight: 900;
   text-transform: uppercase;
@@ -353,16 +353,16 @@ const documentos = [
 
 .documents-list {
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .documents-list a {
-  min-height: 76px;
+  min-height: 66px;
   width: 100%;
-  padding: 12px 22px;
+  padding: 11px 18px;
   display: grid;
-  grid-template-columns: 52px 1px minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: 46px 1px minmax(0, 1fr);
+  gap: 16px;
   align-items: center;
   border: 1px solid rgba(7, 13, 53, 0.08);
   border-radius: 10px;
@@ -370,7 +370,7 @@ const documentos = [
   box-shadow: 0 4px 14px rgba(7, 13, 53, 0.08);
   color: #005fd3;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(14px, 0.98vw, 17px);
+  font-size: clamp(13px, 0.88vw, 15px);
   line-height: 1.18;
   font-weight: 700;
   text-decoration: underline;
@@ -389,7 +389,7 @@ const documentos = [
 
 .documents-list i {
   color: #005fd3;
-  font-size: 38px;
+  font-size: 32px;
   line-height: 1;
 }
 
@@ -417,7 +417,7 @@ const documentos = [
 
 @media (max-width: 700px) {
   .motociclistas-implementaciones {
-    padding: 24px 18px;
+    padding: 28px 20px;
   }
 
   .implementaciones-table__head,

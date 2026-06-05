@@ -208,7 +208,7 @@ onBeforeUnmount(() => {
   position: relative;
   min-height: calc(100svh - 115px);
   width: 100%;
-  padding: 22px 28px 16px;
+  padding: 30px 40px 22px;
   overflow: hidden;
   background:
     radial-gradient(circle at 96% 4%, rgba(190, 208, 0, 0.18), transparent 15%),
@@ -220,22 +220,22 @@ onBeforeUnmount(() => {
   position: absolute;
   top: -42px;
   right: -28px;
-  width: 178px;
-  height: 178px;
+  width: 154px;
+  height: 154px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: rgba(190, 208, 0, 0.15);
   color: #a7ba00;
-  font-size: 76px;
+  font-size: 64px;
   pointer-events: none;
 }
 
 .motociclistas-b__header {
   position: relative;
   z-index: 1;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: grid;
   grid-template-columns: minmax(0, 0.93fr) minmax(360px, 0.72fr);
   gap: 28px;
@@ -246,8 +246,8 @@ onBeforeUnmount(() => {
   margin: 0;
   color: #a7ba00;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(48px, 5.35vw, 76px);
-  line-height: 0.9;
+  font-size: clamp(42px, 4.75vw, 66px);
+  line-height: 0.94;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -256,8 +256,8 @@ onBeforeUnmount(() => {
   margin: 6px 0 0;
   color: #070d35;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(25px, 2.55vw, 36px);
-  line-height: 1.04;
+  font-size: clamp(22px, 2.24vw, 31px);
+  line-height: 1.08;
   font-weight: 850;
 }
 
@@ -272,7 +272,7 @@ onBeforeUnmount(() => {
 
 .motociclistas-b__quote {
   min-height: 112px;
-  padding: 26px 34px 22px 78px;
+  padding: 22px 28px 20px 70px;
   position: relative;
   border-radius: 14px;
   background: #ffffff;
@@ -282,9 +282,9 @@ onBeforeUnmount(() => {
 .motociclistas-b__quote .bi {
   position: absolute;
   top: 16px;
-  left: 28px;
+  left: 24px;
   color: #a7ba00;
-  font-size: 46px;
+  font-size: 40px;
   line-height: 1;
 }
 
@@ -293,8 +293,8 @@ onBeforeUnmount(() => {
   max-width: 510px;
   color: #070d35;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(14px, 1.13vw, 17px);
-  line-height: 1.34;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.36;
   font-weight: 700;
 }
 
@@ -310,7 +310,7 @@ onBeforeUnmount(() => {
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 14px;
 }
 
 .strategy-card {
@@ -318,23 +318,23 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   border-radius: 12px;
-  border-bottom: 9px solid #bed000;
+  border-bottom: 7px solid #bed000;
   background: #ffffff;
   box-shadow: 0 10px 22px rgba(7, 13, 53, 0.12);
   overflow: hidden;
 }
 
 .strategy-card__header {
-  min-height: 78px;
+  min-height: 70px;
   display: flex;
   align-items: stretch;
-  gap: 18px;
+  gap: 14px;
 }
 
 .strategy-card__number {
-  width: 78px;
-  min-height: 76px;
-  flex: 0 0 78px;
+  width: 68px;
+  min-height: 68px;
+  flex: 0 0 68px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -342,22 +342,22 @@ onBeforeUnmount(() => {
   background: #bed000;
   color: #ffffff;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: 42px;
+  font-size: 36px;
   line-height: 1;
   font-weight: 900;
 }
 
 .strategy-card__header div:last-child {
   min-width: 0;
-  padding: 15px 14px 8px 0;
+  padding: 13px 13px 7px 0;
 }
 
 .strategy-card h2 {
   margin: 0;
   color: #070d35;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(19px, 1.55vw, 26px);
-  line-height: 1;
+  font-size: clamp(17px, 1.38vw, 22px);
+  line-height: 1.04;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -366,14 +366,14 @@ onBeforeUnmount(() => {
   margin: 4px 0 0;
   color: #91a400;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(12px, 1vw, 15px);
+  font-size: clamp(11px, 0.9vw, 13px);
   line-height: 1.14;
   font-weight: 700;
 }
 
 .strategy-card__image-link {
   width: calc(100% - 22px);
-  height: 168px;
+  height: 138px;
   margin: 0 11px 12px;
   display: block;
   border-radius: 8px;
@@ -400,7 +400,7 @@ onBeforeUnmount(() => {
 }
 
 .strategy-card__body {
-  padding: 0 18px 10px 10px;
+  padding: 0 16px 9px 10px;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -408,9 +408,9 @@ onBeforeUnmount(() => {
 
 .strategy-card__item {
   display: grid;
-  grid-template-columns: 58px minmax(0, 1fr);
-  gap: 12px;
-  padding: 10px 0;
+  grid-template-columns: 50px minmax(0, 1fr);
+  gap: 10px;
+  padding: 8px 0;
   border-top: 1px dotted rgba(167, 186, 0, 0.85);
 }
 
@@ -420,15 +420,15 @@ onBeforeUnmount(() => {
 }
 
 .strategy-card__icon {
-  width: 54px;
-  height: 54px;
+  width: 46px;
+  height: 46px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: #bed000;
   color: #ffffff;
-  font-size: 29px;
+  font-size: 24px;
   line-height: 1;
 }
 
@@ -436,8 +436,8 @@ onBeforeUnmount(() => {
   margin: 0 0 3px;
   color: #070d35;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(14px, 1.13vw, 17px);
-  line-height: 1.08;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.1;
   font-weight: 900;
 }
 
@@ -445,16 +445,16 @@ onBeforeUnmount(() => {
   margin: 0;
   color: #070d35;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(12px, 0.94vw, 15px);
-  line-height: 1.22;
+  font-size: clamp(11px, 0.82vw, 13px);
+  line-height: 1.24;
   font-weight: 600;
 }
 
 .motociclistas-b__summary {
   position: relative;
   z-index: 1;
-  margin-top: 14px;
-  padding: 10px 32px;
+  margin-top: 12px;
+  padding: 10px 28px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
@@ -466,8 +466,8 @@ onBeforeUnmount(() => {
 .summary-item {
   min-width: 0;
   display: grid;
-  grid-template-columns: 78px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 14px;
   align-items: center;
 }
 
@@ -478,7 +478,7 @@ onBeforeUnmount(() => {
 
 .summary-item > .bi {
   color: #a7ba00;
-  font-size: 64px;
+  font-size: 52px;
   line-height: 1;
 }
 
@@ -486,7 +486,7 @@ onBeforeUnmount(() => {
   margin: 0 0 3px;
   color: #a7ba00;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(16px, 1.24vw, 20px);
+  font-size: clamp(15px, 1.12vw, 18px);
   line-height: 1.05;
   font-weight: 900;
 }
@@ -495,8 +495,8 @@ onBeforeUnmount(() => {
   margin: 0;
   color: #070d35;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(12px, 0.95vw, 15px);
-  line-height: 1.2;
+  font-size: clamp(11px, 0.84vw, 13px);
+  line-height: 1.24;
   font-weight: 700;
 }
 
@@ -532,7 +532,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 575.98px) {
   .motociclistas-b {
-    padding: 22px 16px;
+    padding: 24px 18px;
   }
 
   .motociclistas-b__halo {

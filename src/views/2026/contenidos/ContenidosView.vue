@@ -14,6 +14,8 @@ import MotociclistasBView from './vistas/MotociclistasViewB.vue'
 import MotociclistasImplementaciones from './vistas/MotociclistasImplementaciones.vue'
 import EmpatiaA from './vistas/EmpatiaA.vue'
 import EmpatiaB from './vistas/EmpatiaB.vue'
+import EmpatiaC from './vistas/EmpatiaC.vue'
+import LaboratoriosA from './vistas/LaboratoriosA.vue'
 
 const componentesContenido = {
   inicio: InicioVue,
@@ -26,6 +28,8 @@ const componentesContenido = {
   motociclistas_implementaciones: MotociclistasImplementaciones,  
   empatia_a: EmpatiaA,
   empatia_b: EmpatiaB,
+  empatia_c: EmpatiaC,
+  laboratorios_a: LaboratoriosA,
 }
 
 const route = useRoute()

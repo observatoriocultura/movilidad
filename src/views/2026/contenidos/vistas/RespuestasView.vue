@@ -65,13 +65,13 @@
 .respuestas-view {
   height: calc(100svh - 115px);
   width: 100%;
-  padding: 24px 38px;
+  padding: 34px 54px;
   display: grid;
   grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: 28px;
+  column-gap: 32px;
   align-items: center;
   overflow: hidden;
-  border-left: 10px solid #bed000;
+  border-left: 8px solid #bed000;
   background:
     linear-gradient(135deg, rgba(190, 208, 0, 0.22), rgba(190, 208, 0, 0) 42%),
     #fbfae7;
@@ -99,31 +99,31 @@
   margin: 0;
   color: #1b1c11;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(32px, 3.25vw, 48px);
-  line-height: 1.02;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.04;
   font-weight: 800;
   letter-spacing: 0;
 }
 
 .respuestas-view__subtitle {
-  margin: 18px 0 0;
+  margin: 16px 0 0;
   color: #464834;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(15px, 1.08vw, 17px);
-  line-height: 1.36;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.38;
 }
 
 .respuestas-view__column p {
   margin: 0;
   color: #303125;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(14px, 1vw, 16px);
-  line-height: 1.32;
+  font-size: clamp(13px, 0.96vw, 15px);
+  line-height: 1.35;
   letter-spacing: 0;
 }
 
 .respuestas-view__column p + p {
-  margin-top: 11px;
+  margin-top: 10px;
 }
 
 .respuestas-view__lead,
@@ -133,8 +133,8 @@
 }
 
 .respuestas-view__lead {
-  font-size: clamp(18px, 1.42vw, 22px) !important;
-  line-height: 1.16 !important;
+  font-size: clamp(17px, 1.32vw, 20px) !important;
+  line-height: 1.2 !important;
   color: #1b1c11 !important;
 }
 
@@ -144,7 +144,7 @@
 }
 
 .respuestas-view__closing {
-  padding: 11px 13px;
+  padding: 10px 12px;
   border-radius: 8px;
   background: #f0efdc;
   color: #1b1c11 !important;
@@ -154,7 +154,7 @@
   .respuestas-view {
     height: auto;
     min-height: 100svh;
-    padding: 24px;
+    padding: 28px 24px;
     grid-template-columns: 1fr;
     row-gap: 28px;
     align-items: flex-start;

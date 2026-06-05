@@ -104,13 +104,13 @@
 .motociclistas-view {
   min-height: calc(100svh - 115px);
   width: 100%;
-  padding: 24px 38px;
+  padding: 32px 50px;
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.42fr);
   grid-template-rows: auto auto minmax(0, 1fr);
-  gap: 18px 26px;
+  gap: 16px 24px;
   overflow: hidden;
-  border-left: 10px solid #f1ff36;
+  border-left: 8px solid #f1ff36;
   background: #4e5600;
   color: #fbfae7;
 }
@@ -119,12 +119,12 @@
   grid-column: 1 / 3;
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(280px, 0.58fr);
-  gap: 24px;
+  gap: 26px;
   align-items: end;
 }
 
 .motociclistas-view__eyebrow {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   color: #f1ff36;
   font-family: var(--body, system-ui, sans-serif);
   font-size: 12px;
@@ -139,8 +139,8 @@
   margin: 0;
   color: #ffffff;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(34px, 3.4vw, 50px);
-  line-height: 1.02;
+  font-size: clamp(31px, 3.1vw, 46px);
+  line-height: 1.04;
   font-weight: 800;
   letter-spacing: 0;
 }
@@ -149,8 +149,8 @@
   margin: 0 0 4px;
   color: #f4f5d8;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(15px, 1.14vw, 18px);
-  line-height: 1.34;
+  font-size: clamp(14px, 1.04vw, 16px);
+  line-height: 1.38;
 }
 
 .motociclistas-view strong {
@@ -160,10 +160,10 @@
 
 .motociclistas-view__focus {
   grid-column: 1 / 2;
-  padding: 17px 18px;
+  padding: 16px 18px;
   display: grid;
   grid-template-columns: minmax(250px, 0.82fr) minmax(0, 1fr);
-  gap: 14px 22px;
+  gap: 12px 22px;
   align-items: center;
   border-left: 6px solid #f1ff36;
   background: rgba(255, 255, 255, 0.1);
@@ -173,8 +173,8 @@
   margin: 0;
   color: #f4f5d8;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(14px, 1vw, 16px);
-  line-height: 1.32;
+  font-size: clamp(13px, 0.94vw, 15px);
+  line-height: 1.34;
 }
 
 .motociclistas-view__problem span {
@@ -192,8 +192,8 @@
   display: block;
   color: #ffffff;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(22px, 2vw, 30px);
-  line-height: 1.08;
+  font-size: clamp(20px, 1.8vw, 27px);
+  line-height: 1.1;
 }
 
 .motociclistas-view__diagnosis {
@@ -213,7 +213,7 @@
 
 .metric-card {
   min-width: 0;
-  padding: 16px 15px;
+  padding: 14px 13px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
   background: #fbfae7;
@@ -226,8 +226,8 @@
 }
 
 .metric-card__top {
-  min-height: 44px;
-  margin-bottom: 10px;
+  min-height: 39px;
+  margin-bottom: 8px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -236,22 +236,22 @@
 
 .metric-card__top .bi {
   flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: rgba(190, 208, 0, 0.22);
   color: #4e5600;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1;
 }
 
 .metric-card__number {
   color: #5a6400;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(28px, 2.45vw, 40px);
+  font-size: clamp(25px, 2.18vw, 36px);
   line-height: 0.94;
   font-weight: 900;
   text-align: right;
@@ -272,10 +272,10 @@
 }
 
 .metric-card h2 {
-  margin: 0 0 9px;
+  margin: 0 0 7px;
   color: #1b1c11;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(15px, 1.15vw, 18px);
+  font-size: clamp(14px, 1.04vw, 16px);
   line-height: 1.12;
   font-weight: 800;
 }
@@ -284,8 +284,8 @@
   margin: 0;
   color: #303125;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(12px, 0.92vw, 14px);
-  line-height: 1.28;
+  font-size: clamp(11px, 0.84vw, 13px);
+  line-height: 1.3;
 }
 
 .metric-card strong {
@@ -296,11 +296,11 @@
   grid-column: 2 / 3;
   grid-row: 2 / 4;
   align-self: stretch;
-  padding: 22px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 18px;
+  gap: 16px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.12);
@@ -319,8 +319,8 @@
   margin: 0;
   color: #ffffff;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(20px, 1.85vw, 28px);
-  line-height: 1.14;
+  font-size: clamp(18px, 1.65vw, 25px);
+  line-height: 1.16;
   font-weight: 800;
 }
 
@@ -356,7 +356,7 @@
 
 @media (max-width: 575.98px) {
   .motociclistas-view {
-    padding: 24px;
+    padding: 28px 24px;
     border-left-width: 6px;
   }
 

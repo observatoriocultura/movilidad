@@ -87,4 +87,20 @@ export const vistasContenidos = [
         'label': 'Empatía (2)',
         'display': true,
     },
+    {
+        'number': 1070,
+        'key': 'empatia_c',
+        'title': 'Empatía (3)',
+        'nombre_vista': 'EmpatiaC',
+        'label': 'Empatía (3)',
+        'display': true,
+    },
+    {
+        'number': 1075,
+        'key': 'laboratorios_a',
+        'title': 'Laboratorios (1)',
+        'nombre_vista': 'LaboratoriosA',
+        'label': 'Laboratorios (1)',
+        'display': true,
+    },
 ];

@@ -113,15 +113,15 @@ onBeforeUnmount(() => {
 .primer-hallazgo {
   height: calc(100svh - 115px);
   width: 100%;
-  padding: 24px 38px;
+  padding: 34px 54px;
   display: grid;
   grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr) auto;
-  column-gap: 28px;
-  row-gap: 18px;
+  column-gap: 32px;
+  row-gap: 14px;
   align-items: center;
   overflow: hidden;
-  border-left: 10px solid #bed000;
+  border-left: 8px solid #bed000;
   background:
     linear-gradient(135deg, rgba(190, 208, 0, 0.24), rgba(190, 208, 0, 0) 42%),
     #fbfae7;
@@ -153,31 +153,31 @@ onBeforeUnmount(() => {
   margin: 0;
   color: #1b1c11;
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(32px, 3.25vw, 48px);
-  line-height: 1.02;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.04;
   font-weight: 800;
   letter-spacing: 0;
 }
 
 .primer-hallazgo__subtitle {
-  margin: 18px 0 0;
+  margin: 16px 0 0;
   color: #464834;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(15px, 1.08vw, 17px);
-  line-height: 1.36;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.38;
 }
 
 .primer-hallazgo__column p {
   margin: 0;
   color: #303125;
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(14px, 1vw, 16px);
-  line-height: 1.32;
+  font-size: clamp(13px, 0.96vw, 15px);
+  line-height: 1.35;
   letter-spacing: 0;
 }
 
 .primer-hallazgo__column p + p {
-  margin-top: 11px;
+  margin-top: 10px;
 }
 
 .primer-hallazgo__lead,
@@ -188,8 +188,8 @@ onBeforeUnmount(() => {
 }
 
 .primer-hallazgo__lead {
-  font-size: clamp(18px, 1.42vw, 22px) !important;
-  line-height: 1.16 !important;
+  font-size: clamp(17px, 1.32vw, 20px) !important;
+  line-height: 1.2 !important;
   color: #1b1c11 !important;
 }
 
@@ -199,16 +199,16 @@ onBeforeUnmount(() => {
 }
 
 .primer-hallazgo__question {
-  padding: 11px 13px;
+  padding: 10px 12px;
   border-left: 6px solid #bed000;
   background: rgba(240, 239, 220, 0.92);
   color: #1b1c11 !important;
-  font-size: clamp(17px, 1.25vw, 20px) !important;
-  line-height: 1.18 !important;
+  font-size: clamp(16px, 1.16vw, 18px) !important;
+  line-height: 1.2 !important;
 }
 
 .primer-hallazgo__closing {
-  padding: 11px 13px;
+  padding: 10px 12px;
   border-radius: 8px;
   background: #f0efdc;
   color: #1b1c11 !important;
@@ -225,7 +225,7 @@ onBeforeUnmount(() => {
 .primer-hallazgo__figure {
   width: 100%;
   min-width: 0;
-  aspect-ratio: 16 / 6;
+  aspect-ratio: 16 / 5.3;
   overflow: hidden;
   border-radius: 8px;
   background: #e5e6d2;
@@ -255,7 +255,7 @@ onBeforeUnmount(() => {
   .primer-hallazgo {
     height: auto;
     min-height: 100svh;
-    padding: 24px;
+    padding: 28px 24px;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     row-gap: 28px;

@@ -208,7 +208,7 @@ onBeforeUnmount(() => {
   position: relative;
   min-height: calc(100svh - 115px);
   width: 100%;
-  padding: 22px 28px 16px;
+  padding: 30px 40px 22px;
   overflow: hidden;
   background:
     radial-gradient(circle at 96% 4%, rgba(var(--color-4-rgb), 0.18), transparent 15%),
@@ -220,22 +220,22 @@ onBeforeUnmount(() => {
   position: absolute;
   top: -42px;
   right: -28px;
-  width: 178px;
-  height: 178px;
+  width: 154px;
+  height: 154px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: rgba(var(--color-4-rgb), 0.13);
   color: var(--color-4);
-  font-size: 76px;
+  font-size: 64px;
   pointer-events: none;
 }
 
 .empatia-b__header {
   position: relative;
   z-index: 1;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: grid;
   grid-template-columns: minmax(0, 0.88fr) minmax(390px, 0.82fr);
   gap: 28px;
@@ -246,8 +246,8 @@ onBeforeUnmount(() => {
   margin: 0;
   color: var(--contenidos-texto);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(48px, 5.1vw, 74px);
-  line-height: 0.9;
+  font-size: clamp(42px, 4.65vw, 64px);
+  line-height: 0.94;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -256,8 +256,8 @@ onBeforeUnmount(() => {
   margin: 8px 0 0;
   color: var(--color-1);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(25px, 2.36vw, 34px);
-  line-height: 1.04;
+  font-size: clamp(22px, 2.16vw, 30px);
+  line-height: 1.08;
   font-weight: 850;
 }
 
@@ -272,7 +272,7 @@ onBeforeUnmount(() => {
 
 .empatia-b__quote {
   min-height: 112px;
-  padding: 26px 34px 22px 78px;
+  padding: 22px 28px 20px 70px;
   position: relative;
   border-radius: 14px;
   background: #ffffff;
@@ -282,9 +282,9 @@ onBeforeUnmount(() => {
 .empatia-b__quote .bi {
   position: absolute;
   top: 16px;
-  left: 28px;
+  left: 24px;
   color: var(--color-4);
-  font-size: 46px;
+  font-size: 40px;
   line-height: 1;
 }
 
@@ -293,8 +293,8 @@ onBeforeUnmount(() => {
   max-width: 690px;
   color: var(--contenidos-texto);
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(14px, 1.13vw, 17px);
-  line-height: 1.34;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.36;
   font-weight: 700;
 }
 
@@ -310,7 +310,7 @@ onBeforeUnmount(() => {
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 14px;
 }
 
 .strategy-card {
@@ -318,23 +318,23 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   border-radius: 12px;
-  border-bottom: 9px solid var(--color-4);
+  border-bottom: 7px solid var(--color-4);
   background: #ffffff;
   box-shadow: 0 10px 22px rgba(7, 13, 53, 0.1);
   overflow: hidden;
 }
 
 .strategy-card__header {
-  min-height: 78px;
+  min-height: 70px;
   display: flex;
   align-items: stretch;
-  gap: 18px;
+  gap: 14px;
 }
 
 .strategy-card__number {
-  width: 78px;
-  min-height: 76px;
-  flex: 0 0 78px;
+  width: 68px;
+  min-height: 68px;
+  flex: 0 0 68px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -342,22 +342,22 @@ onBeforeUnmount(() => {
   background: #ececec;
   color: var(--color-1);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: 36px;
+  font-size: 32px;
   line-height: 1;
   font-weight: 900;
 }
 
 .strategy-card__header div:last-child {
   min-width: 0;
-  padding: 15px 14px 8px 0;
+  padding: 13px 13px 7px 0;
 }
 
 .strategy-card h2 {
   margin: 0;
   color: var(--contenidos-texto);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(18px, 1.35vw, 23px);
-  line-height: 1.02;
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.06;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -366,7 +366,7 @@ onBeforeUnmount(() => {
   margin: 5px 0 0;
   color: var(--color-1);
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(12px, 0.98vw, 15px);
+  font-size: clamp(11px, 0.88vw, 13px);
   line-height: 1.14;
   font-style: italic;
   font-weight: 600;
@@ -374,7 +374,7 @@ onBeforeUnmount(() => {
 
 .strategy-card__image-link {
   width: calc(100% - 22px);
-  height: 170px;
+  height: 138px;
   margin: 0 11px 12px;
   display: block;
   border-radius: 8px;
@@ -401,7 +401,7 @@ onBeforeUnmount(() => {
 }
 
 .strategy-card__body {
-  padding: 0 18px 10px 10px;
+  padding: 0 16px 9px 10px;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -409,9 +409,9 @@ onBeforeUnmount(() => {
 
 .strategy-card__item {
   display: grid;
-  grid-template-columns: 52px minmax(0, 1fr);
-  gap: 12px;
-  padding: 9px 0;
+  grid-template-columns: 46px minmax(0, 1fr);
+  gap: 10px;
+  padding: 8px 0;
   border-top: 1px dotted rgba(var(--color-4-rgb), 0.72);
 }
 
@@ -421,15 +421,15 @@ onBeforeUnmount(() => {
 }
 
 .strategy-card__icon {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background: rgba(var(--color-4-rgb), 0.15);
   color: var(--color-4);
-  font-size: 25px;
+  font-size: 22px;
   line-height: 1;
 }
 
@@ -437,8 +437,8 @@ onBeforeUnmount(() => {
   margin: 0 0 3px;
   color: var(--color-1);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(14px, 1.13vw, 17px);
-  line-height: 1.08;
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.1;
   font-style: italic;
   font-weight: 850;
 }
@@ -447,16 +447,16 @@ onBeforeUnmount(() => {
   margin: 0;
   color: var(--contenidos-texto);
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(12px, 0.9vw, 14px);
-  line-height: 1.19;
+  font-size: clamp(11px, 0.8vw, 12.5px);
+  line-height: 1.24;
   font-weight: 600;
 }
 
 .empatia-b__summary {
   position: relative;
   z-index: 1;
-  margin-top: 14px;
-  padding: 10px 32px;
+  margin-top: 12px;
+  padding: 10px 28px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
@@ -468,8 +468,8 @@ onBeforeUnmount(() => {
 .summary-item {
   min-width: 0;
   display: grid;
-  grid-template-columns: 70px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: 14px;
   align-items: center;
 }
 
@@ -480,7 +480,7 @@ onBeforeUnmount(() => {
 
 .summary-item > .bi {
   color: var(--color-4);
-  font-size: 58px;
+  font-size: 50px;
   line-height: 1;
 }
 
@@ -488,7 +488,7 @@ onBeforeUnmount(() => {
   margin: 0 0 3px;
   color: var(--color-1);
   font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(16px, 1.24vw, 20px);
+  font-size: clamp(15px, 1.12vw, 18px);
   line-height: 1.05;
   font-weight: 900;
 }
@@ -497,8 +497,8 @@ onBeforeUnmount(() => {
   margin: 0;
   color: var(--contenidos-texto);
   font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(12px, 0.95vw, 15px);
-  line-height: 1.2;
+  font-size: clamp(11px, 0.84vw, 13px);
+  line-height: 1.24;
   font-weight: 700;
 }
 
@@ -534,7 +534,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 575.98px) {
   .empatia-b {
-    padding: 22px 16px;
+    padding: 24px 18px;
   }
 
   .empatia-b__halo {
