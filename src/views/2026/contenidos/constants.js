@@ -103,4 +103,37 @@ export const vistasContenidos = [
         'label': 'Laboratorios (1)',
         'display': true,
     },
+    {
+        'number': 1080,
+        'key': 'laboratorios_b',
+        'title': 'Laboratorios (2)',
+        'nombre_vista': 'LaboratoriosB',
+        'label': 'Laboratorios (2)',
+        'display': true,
+    },
+    {
+        'number': 1085,
+        'key': 'laboratorios_c',
+        'title': 'Laboratorios (3)',
+        'nombre_vista': 'LaboratoriosC',
+        'label': 'Laboratorios (3)',
+        'display': true,
+    },
+    {
+        'number': 1090,
+        'key': 'escuela_multiplicadores',
+        'title': 'Escuela de Multiplicadores',
+        'nombre_vista': 'EscuelaMultiplicadores',
+        'label': 'Escuela de Multiplicadores',
+        'display': true,
+    },
+    {
+        'number': 1095,
+        'key': 'aprendizajes_a',
+        'title': 'Aprendizajes (1)',
+        'nombre_vista': 'AprendizajesA',
+        'label': 'Aprendizajes (1)',
+        'display': true,
+    },
+
 ];

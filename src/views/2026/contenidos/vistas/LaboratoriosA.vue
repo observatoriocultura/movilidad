@@ -43,15 +43,15 @@ const urlLaboratorios =
 </script>
 
 <template>
-  <main class="laboratorios-a">
+  <main class="contenido-slide contenido-slide--radial laboratorios-a">
     <header class="laboratorios-a__header">
       <h1>LABORATORIOS</h1>
       <p>De la solución en la vía a la conversación en el barrio</p>
       <span aria-hidden="true"></span>
     </header>
 
-    <section class="intro-card info-card info-card--wide" aria-labelledby="laboratorios-que-son">
-      <div class="info-card__icon" aria-hidden="true">
+    <section class="contenido-panel contenido-panel--soft intro-card info-card info-card--wide" aria-labelledby="laboratorios-que-son">
+      <div class="contenido-icon contenido-icon--brand info-card__icon" aria-hidden="true">
         <i class="bi bi-chat-square-heart"></i>
       </div>
 
@@ -70,9 +70,9 @@ const urlLaboratorios =
       </div>
     </section>
 
-    <section class="participants-card" aria-labelledby="laboratorios-participantes">
+    <section class="contenido-panel contenido-panel--soft participants-card" aria-labelledby="laboratorios-participantes">
       <div class="participants-card__intro">
-        <div class="info-card__icon" aria-hidden="true">
+        <div class="contenido-icon contenido-icon--brand info-card__icon" aria-hidden="true">
           <i class="bi bi-people"></i>
         </div>
         <h2 id="laboratorios-participantes">¿Quiénes participan?</h2>
@@ -88,8 +88,8 @@ const urlLaboratorios =
     </section>
 
     <section class="info-grid" aria-label="Metodología y proceso">
-      <article class="info-card">
-        <div class="info-card__icon" aria-hidden="true">
+      <article class="contenido-panel contenido-panel--soft info-card">
+        <div class="contenido-icon contenido-icon--brand info-card__icon" aria-hidden="true">
           <i class="bi bi-people-fill"></i>
         </div>
         <h2>¿Cómo se trabaja?</h2>
@@ -103,8 +103,8 @@ const urlLaboratorios =
         </p>
       </article>
 
-      <article class="info-card">
-        <div class="info-card__icon" aria-hidden="true">
+      <article class="contenido-panel contenido-panel--soft info-card">
+        <div class="contenido-icon contenido-icon--brand info-card__icon" aria-hidden="true">
           <i class="bi bi-arrow-repeat"></i>
         </div>
         <h2>Laboratorios como proceso</h2>
@@ -129,8 +129,8 @@ const urlLaboratorios =
 
       <div class="phases-list">
         <article v-for="fase in fases" :key="fase.numero" class="phase-row">
-          <strong>{{ fase.numero }}</strong>
-          <div class="phase-row__icon" aria-hidden="true">
+          <strong class="contenido-icon contenido-icon--brand">{{ fase.numero }}</strong>
+          <div class="contenido-icon contenido-icon--brand-soft phase-row__icon" aria-hidden="true">
             <i class="bi" :class="fase.icono"></i>
           </div>
           <div>
@@ -141,9 +141,9 @@ const urlLaboratorios =
       </div>
     </section>
 
-    <footer class="laboratorios-a__footer" aria-label="Más información sobre laboratorios">
+    <footer class="contenido-panel laboratorios-a__footer" aria-label="Más información sobre laboratorios">
       <div class="footer-title">
-        <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+        <i class="bi bi-box-arrow-up-right contenido-icon contenido-icon--brand" aria-hidden="true"></i>
         <strong>Para conocer más sobre los laboratorios</strong>
       </div>
 
@@ -155,18 +155,12 @@ const urlLaboratorios =
 
 <style scoped>
 .laboratorios-a {
-  min-height: calc(100svh - 115px);
   width: 100%;
   padding: 24px 38px 18px;
   display: grid;
   grid-template-columns: minmax(420px, 0.9fr) minmax(470px, 1fr);
   grid-template-rows: auto auto minmax(0, 1fr) auto;
   gap: 14px 28px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 94% 7%, rgba(var(--color-1-rgb), 0.14), transparent 16%),
-    linear-gradient(180deg, #ffffff 0%, var(--contenidos-fondo-suave) 100%);
-  color: var(--contenidos-texto);
 }
 
 .laboratorios-a__header {
@@ -215,9 +209,6 @@ const urlLaboratorios =
   grid-template-columns: minmax(210px, 0.52fr) 1fr;
   gap: 24px;
   align-items: center;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 14px 34px rgba(8, 15, 37, 0.08);
 }
 
 .participants-card__intro {
@@ -265,9 +256,6 @@ const urlLaboratorios =
 .info-card {
   min-width: 0;
   padding: 18px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 14px 34px rgba(8, 15, 37, 0.07);
 }
 
 .info-card--wide {
@@ -279,15 +267,7 @@ const urlLaboratorios =
 .info-card__icon {
   width: 70px;
   height: 70px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--color-1);
-  color: #1b1c11;
-  box-shadow: inset 0 -10px 18px rgba(90, 100, 0, 0.18);
   font-size: 36px;
-  line-height: 1;
 }
 
 .info-card h2,
@@ -378,27 +358,15 @@ const urlLaboratorios =
 .phase-row > strong {
   width: 58px;
   height: 58px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--color-1);
   color: #ffffff;
   font-family: var(--heading, system-ui, sans-serif);
   font-size: 28px;
-  line-height: 1;
   font-weight: 900;
 }
 
 .phase-row__icon {
   width: 64px;
   height: 64px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(var(--color-1-rgb), 0.1);
-  color: #6f7b00;
   font-size: 33px;
 }
 
@@ -419,9 +387,6 @@ const urlLaboratorios =
   grid-template-columns: 330px auto minmax(0, 1fr);
   gap: 18px;
   align-items: center;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.84);
-  box-shadow: 0 10px 26px rgba(8, 15, 37, 0.06);
 }
 
 .footer-title {
@@ -437,12 +402,6 @@ const urlLaboratorios =
 .footer-title .bi {
   width: 54px;
   height: 54px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--color-1);
-  color: #1b1c11;
   font-size: 29px;
 }
 
@@ -471,9 +430,7 @@ const urlLaboratorios =
 @media (max-width: 1180px) {
   .laboratorios-a {
     height: auto;
-    min-height: 100svh;
     grid-template-columns: 1fr;
-    overflow: auto;
   }
 
   .laboratorios-a__header,

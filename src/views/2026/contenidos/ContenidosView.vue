@@ -16,6 +16,10 @@ import EmpatiaA from './vistas/EmpatiaA.vue'
 import EmpatiaB from './vistas/EmpatiaB.vue'
 import EmpatiaC from './vistas/EmpatiaC.vue'
 import LaboratoriosA from './vistas/LaboratoriosA.vue'
+import LaboratoriosB from './vistas/LaboratoriosB.vue'
+import LaboratoriosC from './vistas/LaboratoriosC.vue'
+import EscuelaMultiplicadores from './vistas/EscuelaMultiplicadores.vue'
+import AprendizajesA from './vistas/AprendizajesA.vue'
 
 const componentesContenido = {
   inicio: InicioVue,
@@ -30,6 +34,10 @@ const componentesContenido = {
   empatia_b: EmpatiaB,
   empatia_c: EmpatiaC,
   laboratorios_a: LaboratoriosA,
+  laboratorios_b: LaboratoriosB,
+  laboratorios_c: LaboratoriosC,
+  escuela_multiplicadores: EscuelaMultiplicadores,
+  aprendizajes_a: AprendizajesA,
 }
 
 const route = useRoute()

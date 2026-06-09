@@ -53,7 +53,7 @@ const vistasVisibles = computed(() => vistasContenidos.filter((vista) => vista.d
   gap: 8px;
   flex: 0 0 auto;
   border-radius: 4px;
-  color: #1b1c11;
+  color: var(--contenidos-texto);
   background: transparent;
   font-family: var(--body, system-ui, sans-serif);
   font-size: 16px;
@@ -70,13 +70,13 @@ const vistasVisibles = computed(() => vistasContenidos.filter((vista) => vista.d
 .contenidos-menu__item:hover,
 .contenidos-menu__item:focus-visible,
 .contenidos-menu__item--active {
-  background: #bed000;
-  color: #4e5600;
+  background: var(--contenidos-color-principal);
+  color: var(--contenidos-acento-texto);
   transform: translateY(-1px);
 }
 
 .contenidos-menu__item:focus-visible {
-  outline: 2px solid #5a6400;
+  outline: 2px solid var(--contenidos-acento-oscuro);
   outline-offset: 2px;
 }
 
@@ -87,7 +87,7 @@ const vistasVisibles = computed(() => vistasContenidos.filter((vista) => vista.d
   border: 0;
   border-radius: 2px;
   padding: 0;
-  background: #c7c8ad;
+  background: rgba(var(--color-1-rgb), 0.28);
   cursor: pointer;
   transition:
     background 180ms ease,
@@ -97,17 +97,17 @@ const vistasVisibles = computed(() => vistasContenidos.filter((vista) => vista.d
 
 .contenidos-menu__dot:hover,
 .contenidos-menu__dot:focus-visible {
-  background: #777961;
+  background: rgba(var(--color-1-rgb), 0.58);
   transform: scale(1.25);
 }
 
 .contenidos-menu__dot--active {
-  background: #5a6400;
+  background: var(--contenidos-acento-oscuro);
   box-shadow: 0 0 0 3px rgba(190, 208, 0, 0.35);
 }
 
 .contenidos-menu__dot:focus-visible {
-  outline: 2px solid #5a6400;
+  outline: 2px solid var(--contenidos-acento-oscuro);
   outline-offset: 3px;
 }
 
