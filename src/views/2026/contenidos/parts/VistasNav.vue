@@ -32,9 +32,12 @@ const vistasVisibles = computed(() => vistasContenidos.filter((vista) => vista.d
 
 <style scoped>
 .contenidos-menu {
-  width: 100%;
+  width: fit-content;
+  max-width: calc(100% - 16px);
+  margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   overflow-x: auto;
   padding: 8px;

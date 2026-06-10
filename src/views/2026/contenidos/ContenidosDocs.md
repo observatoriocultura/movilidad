@@ -1,26 +1,25 @@
-# Documentacion del modulo de contenidos
+# Documentación del módulo de contenidos
 
-Este documento resume el estado inicial del modulo `src/views/2026/contenidos/`. Su objetivo es servir como guia rapida para desarrolladores y agentes automatizados que deban mantener o ampliar la experiencia interactiva de contenidos del producto **Cultura para la Movilidad**.
+Este documento resume el estado actual del módulo `src/views/2026/contenidos/`. Sirve como guía rápida para mantener o ampliar la experiencia interactiva de contenidos del producto **Cultura para la Movilidad**.
 
-## Proposito del modulo
+## Propósito del módulo
 
-El modulo construye una interfaz web navegable tipo presentacion de diapositivas. Cada pantalla muestra una vista de contenido a la vez y el usuario puede moverse entre secciones mediante una navegacion superior de puntos.
+El módulo construye una interfaz web navegable tipo presentación de diapositivas. Cada pantalla muestra una vista de contenido a la vez y el usuario puede moverse entre secciones mediante la navegación superior de puntos o con las flechas del teclado.
 
-El producto corresponde al frente de contenidos de la SCRD para el convenio con la Secretaria Distrital de Movilidad de Bogota. El tono esperado es de storytelling: pantallas directas, autoexplicativas, visualmente claras, con titulos grandes y mensajes breves.
+El producto corresponde al frente de contenidos de la Secretaría Distrital de Cultura, Recreación y Deporte para el convenio con la Secretaría Distrital de Movilidad de Bogotá. El tono esperado es de storytelling: pantallas directas, autoexplicativas, visualmente claras, con títulos grandes y mensajes breves.
 
 ## Archivos principales
 
-- `ContenidosView.vue`: vista contenedora. Lee el parametro de ruta, valida la vista activa y renderiza el componente correspondiente.
-- `constants.js`: listado canonico de vistas disponibles para la navegacion.
-- `parts/VistasNav.vue`: navegacion superior con boton de regreso a portada y puntos para saltar entre vistas.
-- `vistas/InicioVue.vue`: primera pantalla de preguntas de apertura.
-- `vistas/RespuestasView.vue`: pantalla narrativa sobre el enfoque humano, cultural y conductual de la movilidad.
-- `vistas/QueBuscamos1View.vue`: archivo creado pero aun sin contenido.
-- `ContenidosDocs.md`: esta documentacion.
+- `ContenidosView.vue`: vista contenedora. Lee el parámetro de ruta, valida la vista activa, registra componentes y renderiza la pantalla correspondiente.
+- `constants.js`: listado canónico de vistas disponibles para navegación y orden.
+- `contenidos.css`: variables de color y capa común de clases reutilizables para las vistas.
+- `parts/VistasNav.vue`: navegación superior con botón de regreso a portada y puntos para saltar entre vistas.
+- `vistas/`: carpeta de componentes de contenido, cada uno tratado como una diapositiva.
+- `ContenidosDocs.md`: esta documentación.
 
 ## Flujo de rutas
 
-La ruta esta definida en `src/router/index.js`:
+La ruta está definida en `src/router/index.js`:
 
 ```js
 {
@@ -30,13 +29,14 @@ La ruta esta definida en `src/router/index.js`:
 }
 ```
 
-El parametro `key` es opcional. Si el usuario entra a `/contenidos`, o si usa una `key` invalida, `ContenidosView.vue` redirige a la primera vista definida en `vistasContenidos`.
+El parámetro `key` es opcional. Si el usuario entra a `/contenidos`, o si usa una `key` inválida, `ContenidosView.vue` redirige a la primera vista definida en `vistasContenidos`.
 
-La portada enlaza al modulo desde `src/views/2026/PortadaView.vue` con:
+La vista activa también puede cambiar con el teclado:
 
-```vue
-<RouterLink class="report-button" to="/contenidos">Empezar</RouterLink>
-```
+- `ArrowRight`: avanza a la siguiente vista navegable.
+- `ArrowLeft`: vuelve a la vista navegable anterior.
+
+La navegación por teclado se ignora cuando hay una galería PhotoSwipe abierta o cuando el foco está en un campo editable.
 
 ## Contrato de `constants.js`
 
@@ -49,43 +49,49 @@ La portada enlaza al modulo desde `src/views/2026/PortadaView.vue` con:
   title: 'Inicio',
   nombre_vista: 'InicioView',
   label: 'Inicio',
+  display: true,
 }
 ```
 
 Campos actuales:
 
 - `number`: orden o identificador interno de la vista.
-- `key`: identificador usado en la URL y para resolver la vista activa.
-- `title`: texto usado como `title` y `aria-label` en la navegacion.
+- `key`: identificador usado en la URL y en el mapa `componentesContenido`.
+- `title`: texto usado como `title` y `aria-label` en la navegación.
 - `nombre_vista`: nombre descriptivo del componente esperado.
 - `label`: etiqueta corta disponible para UI futura.
+- `display`: cuando es `false`, la vista no aparece en la navegación de puntos.
 
-Importante: actualmente `ContenidosView.vue` no carga componentes de forma automatica desde `nombre_vista`. Para que una vista funcione no basta con agregarla a `constants.js`; tambien debe importarse y registrarse en `componentesContenido`.
+Importante: `nombre_vista` es informativo. `ContenidosView.vue` no carga componentes automáticamente desde ese campo. Para que una vista funcione debe existir en `constants.js`, importarse en `ContenidosView.vue` y registrarse en `componentesContenido`.
 
-## Como se resuelve la vista activa
+## Vistas registradas
 
-`ContenidosView.vue` hace lo siguiente:
-
-1. Importa `vistasContenidos`.
-2. Crea `keysValidas` a partir de los valores `key`.
-3. Lee `route.params.key`.
-4. Si la `key` existe en `keysValidas`, la usa como `vistaActiva`.
-5. Si no existe, usa la primera vista de `vistasContenidos`.
-6. Con un `watch` inmediato, reemplaza la URL invalida o vacia por la ruta canonica.
-7. Renderiza el componente activo con `<component :is="componenteActivo" />`.
-
-Mapa actual de componentes:
+Mapa actual de componentes en `ContenidosView.vue`:
 
 ```js
 const componentesContenido = {
   inicio: InicioVue,
   respuestas: RespuestasView,
+  primer_hallazgo: PrimerHallazgo,
+  segundo_hallazgo: SegundoHallazgo,
+  tercer_hallazgo: TercerHallazgo,
+  motociclistas: MotociclistasView,
+  motociclistas_b: MotociclistasBView,
+  motociclistas_implementaciones: MotociclistasImplementaciones,
+  empatia_a: EmpatiaA,
+  empatia_b: EmpatiaB,
+  empatia_c: EmpatiaC,
+  laboratorios_a: LaboratoriosA,
+  laboratorios_b: LaboratoriosB,
+  laboratorios_c: LaboratoriosC,
+  escuela_multiplicadores: EscuelaMultiplicadores,
+  aprendizajes_a: AprendizajesA,
 }
 ```
 
-Por esta razon, la entrada `que-buscamos-1` aparece en la navegacion pero aun no renderiza contenido, porque `QueBuscamos1View.vue` esta vacio y no esta registrado en `componentesContenido`.
+`que_buscamos_1` existe en `constants.js` con `display: false`, pero actualmente no está registrada en `componentesContenido`.
 
-## Navegacion
+## Navegación
 
 `parts/VistasNav.vue` recibe:
 
@@ -93,27 +99,97 @@ Por esta razon, la entrada `que-buscamos-1` aparece en la navegacion pero aun no
 activeKey: String
 ```
 
-Con esa propiedad marca el punto activo. La navegacion incluye:
+Con esa propiedad marca el punto activo. La navegación incluye:
 
 - Un `RouterLink` a `/` con icono de casa.
-- Un `RouterLink` por cada elemento de `vistasContenidos`.
+- Un `RouterLink` por cada elemento visible de `vistasContenidos`.
 - Estado activo cuando `vista.key === activeKey`.
 - Etiquetas accesibles mediante `aria-label` y `title`.
 
-La navegacion usa clases CSS propias en el componente. El color de acento principal es `#bed000`, alineado con los lineamientos del proyecto.
+Los colores de navegación usan variables de `contenidos.css`, especialmente `--contenidos-color-principal`, `--contenidos-acento-oscuro` y `--contenidos-acento-texto`.
 
-## Como agregar una nueva vista
+## Capa común de estilos
+
+`contenidos.css` define la paleta y utilidades visuales compartidas. Las vistas recientes ya usan esta capa para reducir duplicación y mantener coherencia.
+
+Clases principales:
+
+- `contenido-slide`: base de diapositiva con alto, fondo, color y comportamiento responsive.
+- `contenido-slide--blue`: variante de fondo con apoyo celeste.
+- `contenido-slide--radial`: variante con detalle radial sutil.
+- `contenido-panel`: panel/tarjeta común con borde, fondo y sombra.
+- `contenido-panel--soft`: variante de panel con fondo más suave.
+- `contenido-panel--left`, `contenido-panel--left-sm`: acento lateral.
+- `contenido-panel--top`, `contenido-panel--top-sm`: acento superior.
+- `contenido-eyebrow`: etiqueta superior en mayúsculas.
+- `contenido-title`: título principal de diapositiva o bloque.
+- `contenido-heading`: subtítulo destacado.
+- `contenido-text`: texto base con tipografía del cuerpo.
+- `contenido-icon`: base para iconos circulares.
+- `contenido-icon--brand`, `contenido-icon--brand-soft`, `contenido-icon--blue`, `contenido-icon--pink`: variantes cromáticas de iconos.
+- `contenido-icon--sm`, `contenido-icon--md`, `contenido-icon--lg`: tamaños de iconos.
+- `contenido-number`: número grande decorativo o secuencial.
+- `contenido-tag`: chip o etiqueta resaltada.
+- `contenido-key-list`: lista compacta de frases clave con check.
+- `contenido-icon-list`: lista con iconos de apoyo por ítem.
+
+Cuando una vista requiera layout propio, debe mantener clases scoped semánticas para grillas, filas, imágenes o relaciones específicas, y usar la capa común solo para elementos visuales repetidos.
+
+## Estado actual del contenido
+
+### `InicioVue.vue`
+
+Pantalla de apertura con dos preguntas grandes sobre comportamientos viales de riesgo. Usa fondo de acento y dos tarjetas grandes.
+
+### `RespuestasView.vue`
+
+Pantalla narrativa sobre la necesidad de entender la movilidad desde factores humanos, culturales y conductuales.
+
+### `PrimerHallazgo.vue`, `SegundoHallazgo.vue`, `TercerHallazgo.vue`
+
+Pantallas de hallazgos con composición visual propia y galerías PhotoSwipe para ampliar imágenes del proceso.
+
+### `MotociclistasView.vue`, `MotociclistasViewB.vue`, `MotociclistasImplementaciones.vue`
+
+Bloque de contenidos sobre motociclistas, métricas, estrategias, imágenes y resultados/implementaciones. Algunas vistas usan PhotoSwipe.
+
+### `EmpatiaA.vue`, `EmpatiaB.vue`, `EmpatiaC.vue`
+
+Bloque de contenidos sobre empatía, estrategias e implementaciones. Algunas vistas usan imágenes ampliables con PhotoSwipe.
+
+### `LaboratoriosA.vue`
+
+Introduce los Laboratorios de Transformación Cultural Situada: qué son, quiénes participan, cómo se trabaja y fases del proceso. Mantiene un layout específico, pero usa parcialmente la capa común de paneles e iconos.
+
+### `LaboratoriosB.vue`
+
+Explica por qué los laboratorios son importantes. Organiza tres razones en columnas: personas que dinamizan, comunidades protagonistas y participación innovadora. Usa la capa común de `contenido-slide`, paneles, iconos, número y tags.
+
+### `LaboratoriosC.vue`
+
+Presenta la propuesta para los laboratorios Las Delicias y Minuto de Dios. Usa dos columnas de laboratorios, una propuesta central y paneles de información espejo.
+
+### `EscuelaMultiplicadores.vue`
+
+Pantalla sobre la Escuela de Multiplicadores de Cultura Ciudadana para la Movilidad. Separa en dos columnas qué se priorizó y qué se hizo, con listas iconográficas y frases resaltadas.
+
+### `AprendizajesA.vue`
+
+Pantalla de cierre/reflexión con síntesis de aprendizajes y tres columnas estratégicas: lenguaje común, negociación entre rigor y operación, y continuidad del cambio comportamental.
+
+## Cómo agregar una nueva vista
 
 1. Crear un componente en `src/views/2026/contenidos/vistas/`, por ejemplo `NuevaVista.vue`.
 2. Agregar la entrada correspondiente en `vistasContenidos`:
 
 ```js
 {
-  number: 1030,
-  key: 'nueva-vista',
+  number: 1100,
+  key: 'nueva_vista',
   title: 'Nueva vista',
   nombre_vista: 'NuevaVista',
   label: 'Nueva vista',
+  display: true,
 }
 ```
 
@@ -127,64 +203,41 @@ import NuevaVista from './vistas/NuevaVista.vue'
 
 ```js
 const componentesContenido = {
-  inicio: InicioVue,
-  respuestas: RespuestasView,
-  'nueva-vista': NuevaVista,
+  // ...
+  nueva_vista: NuevaVista,
 }
 ```
 
-5. Verificar que `/contenidos/nueva-vista` renderice correctamente y que el punto activo cambie en la navegacion.
+5. Verificar que `/contenidos/nueva_vista` renderice correctamente y que el punto activo cambie en la navegación.
 
-## Lineamientos de implementacion para nuevas pantallas
+## Lineamientos de implementación para nuevas pantallas
 
 - Priorizar Bootstrap 5.3.8 y sus utilidades antes de crear CSS nuevo.
-- Usar `#BED000` como color de acento principal en botones, indicadores, estados activos o detalles visuales.
-- Mantener cada vista como una diapositiva: una idea central, jerarquia clara y poco texto por bloque.
-- Optimizar para laptop de 1366 x 786 px, evitando scroll vertical cuando sea razonable.
-- Cuidar el responsive: en movil la vista puede apilar columnas y permitir scroll si el contenido lo necesita.
+- Usar la capa común de `contenidos.css` para paneles, iconos, títulos, tags y listas recurrentes.
+- Mantener cada vista como una diapositiva: una idea central, jerarquía clara y poco texto por bloque.
+- Optimizar para laptop de `1366 x 786 px`, evitando scroll vertical cuando sea razonable.
+- Cuidar responsive: en móvil la vista puede apilar columnas y permitir scroll si el contenido lo necesita.
 - Evitar animaciones complejas; si se agregan transiciones, deben ser discretas.
-- Mantener componentes simples y con nombres claros.
-- No introducir librerias nuevas sin una razon concreta.
+- Mantener componentes simples, con datos estructurados cuando haya listas repetibles.
+- No introducir librerías nuevas sin una razón concreta.
+- No mover lógica específica de galerías o layouts complejos a CSS global si no se repite claramente.
 
-## Estado actual del contenido
+## Advertencias técnicas
 
-### `InicioVue.vue`
-
-Pantalla de apertura con dos preguntas grandes:
-
-- Por que las personas cruzan la calle por donde no deben aunque conocen el riesgo.
-- Que hace que un motociclista exceda la velocidad aun sabiendo el peligro.
-
-La pantalla usa fondo `#bed000`, dos tarjetas grandes y una disposicion en dos columnas en escritorio. En pantallas menores a `900px`, las tarjetas se apilan.
-
-### `RespuestasView.vue`
-
-Pantalla narrativa sobre la necesidad de entender la movilidad desde factores humanos y culturales. Plantea que los problemas no se resuelven solo con senales, normas o infraestructura, sino tambien comprendiendo creencias, emociones, habitos, narrativas y normas sociales.
-
-La pantalla usa una grilla de tres columnas en escritorio y se apila en movil a partir de `860px`.
-
-### `QueBuscamos1View.vue`
-
-Archivo vacio. La entrada ya existe en `constants.js`, pero falta:
-
-- Escribir el contenido del componente.
-- Importarlo en `ContenidosView.vue`.
-- Registrarlo en `componentesContenido`.
-
-## Advertencias tecnicas
-
-- Algunos textos aparecen con problemas de codificacion o mojibake. Antes de editar contenido final, conviene normalizar los archivos a UTF-8 y corregir los textos visibles.
-- El proyecto tiene Bootstrap instalado, pero las vistas actuales usan bastante CSS scoped personalizado. Para futuras pantallas, conviene acercarse mas a utilidades y componentes Bootstrap cuando sea posible.
-- La navegacion muestra puntos sin texto visible. Esto es compacto y funciona como presentacion, pero si el numero de vistas crece mucho puede ser necesario agregar agrupacion, tooltips mas descriptivos o un indice alternativo.
-- `nombre_vista` en `constants.js` es informativo por ahora; no existe carga dinamica basada en ese campo.
+- Algunos archivos históricos pueden mostrar mojibake si se leen con una consola que no use UTF-8. Antes de editar textos visibles, conviene confirmar y normalizar el contenido final.
+- `nombre_vista` sigue siendo informativo; no existe carga dinámica basada en ese campo.
+- La navegación por puntos es compacta y funciona como presentación, pero si el número de vistas crece mucho puede ser necesario agregar agrupación, tooltips más descriptivos o un índice alternativo.
+- Las vistas con PhotoSwipe deben probarse después de cualquier cambio visual, porque dependen de selectores de imagen y del estado `.pswp`.
 
 ## Checklist antes de cerrar cambios
 
 - Ejecutar `npm run build`.
-- Probar `/contenidos`, `/contenidos/inicio`, `/contenidos/respuestas` y cualquier nueva ruta.
+- Probar `/contenidos`, `/contenidos/inicio` y cualquier ruta nueva o modificada.
+- Probar rutas con galerías si se tocó una vista con PhotoSwipe.
 - Revisar consola del navegador.
 - Verificar escritorio aproximado `1366 x 786 px`.
-- Verificar responsive en ancho movil.
-- Confirmar que la vista nueva esta en `constants.js` y en `componentesContenido`.
-- Confirmar que los textos estan en UTF-8 y sin mojibake.
-- Confirmar que el color `#BED000` se usa de forma coherente.
+- Verificar responsive en ancho móvil.
+- Confirmar que la vista nueva está en `constants.js` y en `componentesContenido`.
+- Confirmar que `display` está configurado según deba aparecer o no en la navegación.
+- Confirmar que los textos visibles están en UTF-8 y sin mojibake.
+- Confirmar que la paleta de `contenidos.css` se usa de forma coherente.

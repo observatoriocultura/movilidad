@@ -4,7 +4,8 @@ import { useRoute, useRouter } from 'vue-router'
 import './contenidos.css'
 import { vistasContenidos } from './constants'
 import VistasNav from './parts/VistasNav.vue'
-import InicioVue from './vistas/InicioVue.vue'
+import InicioEstructura from './vistas/InicioEstructura.vue'
+import InicioView from './vistas/InicioView.vue'
 import RespuestasView from './vistas/RespuestasView.vue'
 import PrimerHallazgo from './vistas/PrimerHallazgo.vue'
 import SegundoHallazgo from './vistas/SegundoHallazgo.vue'
@@ -22,7 +23,8 @@ import EscuelaMultiplicadores from './vistas/EscuelaMultiplicadores.vue'
 import AprendizajesA from './vistas/AprendizajesA.vue'
 
 const componentesContenido = {
-  inicio: InicioVue,
+  inicio_estructura: InicioEstructura,
+  inicio: InicioView,
   respuestas: RespuestasView,
   primer_hallazgo: PrimerHallazgo,
   segundo_hallazgo: SegundoHallazgo,

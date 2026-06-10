@@ -12,6 +12,7 @@
   --primary-bright: #bed000;
   --secondary: #466800;
   --secondary-bright: #a0d83e;
+  --accent-blue: #00b4ff;
   --outline: #c7c8ad;
   --inverse: #303125;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
@@ -63,7 +64,8 @@ a {
   padding: 0 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 24px;
 }
 
@@ -79,18 +81,35 @@ a {
 .navlinks {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 12px;
   color: var(--text-muted);
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .navlinks a {
-  transition: color 180ms ease;
+  position: relative;
+  padding: 10px 12px;
+  border-radius: 4px;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
 }
 
-.navlinks a:hover {
+.navlinks a:hover,
+.navlinks a:focus-visible {
+  background: rgba(190, 208, 0, 0.14);
   color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.navlinks a:focus-visible {
+  outline: 2px solid var(--primary-bright);
+  outline-offset: 2px;
 }
 
 .report-button {
@@ -124,10 +143,10 @@ main {
 
 .hero {
   position: relative;
-  min-height: 720px;
+  min-height: 612px;
   aspect-ratio: 16 / 9;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   background: var(--inverse);
 }
@@ -142,9 +161,20 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transform: scale(1.015);
+  transition:
+    opacity 1000ms ease,
+    transform 6500ms ease;
+}
+
+.hero__image--active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .hero__overlay {
+  z-index: 1;
   background: linear-gradient(
     90deg,
     rgba(27, 28, 17, 0.9) 0%,
@@ -153,12 +183,30 @@ main {
   );
 }
 
+.hero__logo {
+  position: absolute;
+  top: 24px;
+  z-index: 4;
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.22));
+}
+
+.hero__logo--left {
+  left: 24px;
+}
+
+.hero__logo--right {
+  right: 24px;
+}
+
 .hero__content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(100%, 1280px);
   margin: 0 auto;
-  padding: 64px 24px;
+  padding: 44px 24px 56px;
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(280px, 5fr);
   gap: 8px;
@@ -209,7 +257,7 @@ h1 strong {
 }
 
 .hero__summary {
-  max-width: 570px;
+  max-width: 650px;
   margin: 0;
   color: #e4e3d1;
   font-size: 18px;
@@ -224,7 +272,7 @@ h1 strong {
 }
 
 .metric-card {
-  min-width: 160px;
+  min-width: 178px;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -314,22 +362,52 @@ h1 strong {
 
 .slide-indicator {
   position: absolute;
+  z-index: 3;
   right: 24px;
-  bottom: 8px;
+  bottom: 14px;
   left: 24px;
   display: flex;
-  gap: 4px;
-  height: 4px;
+  gap: 8px;
+  height: 6px;
 }
 
-.slide-indicator span {
+.slide-indicator button {
+  position: relative;
   flex: 1;
+  overflow: hidden;
+  border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.2);
+  padding: 0;
+  background: rgba(255, 255, 255, 0.24);
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.slide-indicator button:hover,
+.slide-indicator button:focus-visible {
+  background: rgba(255, 255, 255, 0.48);
+  transform: translateY(-1px);
+}
+
+.slide-indicator button:focus-visible {
+  outline: 2px solid var(--primary-bright);
+  outline-offset: 3px;
 }
 
 .slide-indicator .active {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.slide-indicator .active::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  border-radius: inherit;
   background: var(--primary-bright);
+  transform-origin: left;
+  animation: slide-progress 5000ms linear both;
 }
 
 .insights {
@@ -337,7 +415,7 @@ h1 strong {
   margin: 0 auto;
   padding: 64px 24px;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.7fr repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -408,6 +486,11 @@ h2 {
   color: #ffffff;
 }
 
+.insight-card--blue {
+  background: var(--accent-blue);
+  color: #053348;
+}
+
 .insight-icon {
   margin-bottom: 8px;
   font-size: 48px;
@@ -425,43 +508,6 @@ h2 {
 .insight-card small {
   max-width: 170px;
   opacity: 0.82;
-}
-
-.footer {
-  border-top: 1px solid var(--outline);
-  background: var(--surface-container);
-}
-
-.footer__inner {
-  width: min(100%, 1280px);
-  margin: 0 auto;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.footer p {
-  margin: 4px 0 0;
-  color: var(--text-muted);
-  font-size: 14px;
-  line-height: 20px;
-}
-
-.footer strong {
-  color: var(--secondary);
-}
-
-.footer nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  color: var(--text-muted);
-}
-
-.footer nav a:hover {
-  color: var(--secondary);
 }
 
 @keyframes reveal {
@@ -486,10 +532,32 @@ h2 {
   }
 }
 
+@keyframes slide-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__image,
+  .slide-indicator button {
+    transition: none;
+  }
+
+  .slide-indicator .active::after {
+    animation: none;
+  }
+}
+
 @media (max-width: 980px) {
   .topbar__inner {
     min-height: 72px;
     padding: 0 16px;
+    justify-content: center;
+    gap: 12px;
   }
 
   .brand {
@@ -498,7 +566,9 @@ h2 {
   }
 
   .navlinks {
-    display: none;
+    gap: 14px;
+    font-size: 13px;
+    line-height: 18px;
   }
 
   .report-button {
@@ -511,16 +581,20 @@ h2 {
   }
 
   .hero {
-    min-height: calc(100svh - 72px);
+    min-height: min(612px, calc(100svh - 72px));
     aspect-ratio: auto;
   }
 
   .hero__content {
     grid-template-columns: 1fr;
-    padding: 48px 16px 64px;
+    padding: 34px 16px 54px;
   }
 
   .signal-rings {
+    display: none;
+  }
+
+  .hero__logo {
     display: none;
   }
 
@@ -554,14 +628,4 @@ h2 {
     min-height: 180px;
   }
 
-  .footer__inner {
-    padding: 24px 16px;
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .footer nav {
-    flex-wrap: wrap;
-    gap: 16px;
-  }
 }
