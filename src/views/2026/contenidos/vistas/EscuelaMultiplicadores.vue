@@ -57,7 +57,7 @@ const secciones = [
 
 <template>
   <main class="contenido-slide escuela-multiplicadores">
-    <section class="container px-3 px-lg-5 py-3 h-100">
+    <section class="container px-3 px-lg-5 pt-2 pb-3 h-100">
       <header class="contenido-panel contenido-panel--left hero-panel p-3 p-lg-4 mb-3">
         <div class="contenido-icon contenido-icon--brand contenido-icon--lg hero-panel__icon" aria-hidden="true">
           <i class="bi bi-megaphone-fill"></i>
@@ -95,6 +95,32 @@ const secciones = [
           </article>
         </div>
       </section>
+
+      <aside class="contenido-panel producto-final mt-3 p-3" aria-labelledby="producto-final-titulo">
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3">
+          <span class="contenido-icon contenido-icon--brand contenido-icon--md flex-shrink-0" aria-hidden="true">
+            <i class="bi bi-file-earmark-text-fill"></i>
+          </span>
+
+          <div class="flex-grow-1">
+            <p class="contenido-eyebrow mb-1">Producto final de la Escuela</p>
+            <h2 id="producto-final-titulo" class="producto-final__titulo h5 mb-0">
+              Informe técnico de la transferencia conceptual del enfoque en Cultura Ciudadana para la movilidad
+              realizado en la Escuela de Multiplicadores.
+            </h2>
+          </div>
+
+          <a
+            class="btn btn-dark d-inline-flex align-items-center justify-content-center gap-2 flex-shrink-0"
+            href="https://drive.google.com/file/d/1uhPpXCXfye-zai8WXnT1s9OpQSt4v3L9/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver informe
+            <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </aside>
     </section>
   </main>
 </template>
@@ -124,6 +150,14 @@ const secciones = [
 
 .content-list {
   margin-top: 0;
+}
+
+.producto-final {
+  border-left: 5px solid #bed000;
+}
+
+.producto-final__titulo {
+  line-height: 1.35;
 }
 
 @media (max-width: 575.98px) {
