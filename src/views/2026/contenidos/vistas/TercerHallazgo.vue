@@ -7,10 +7,10 @@ const imageBase = `${import.meta.env.BASE_URL}2026/tablero_1/images/`
 
 const imagenesTercerHallazgo = [
   {
-    src: `${imageBase}tercer-hallazgo-1.jpg`,
-    alt: 'Registro visual asociado al tercer hallazgo de movilidad',
-    width: 1920,
-    height: 1032,
+    src: `${imageBase}prototipo-motociclista-juan-carro.jpeg`,
+    alt: 'Prototipo de motociclista Juan en carro asociado al tercer hallazgo',
+    width: 1600,
+    height: 900,
   },
 ]
 
@@ -107,12 +107,12 @@ onBeforeUnmount(() => {
 .tercer-hallazgo {
   height: calc(100svh - 115px);
   width: 100%;
-  padding: 34px 54px;
+  padding: 30px 46px;
   display: grid;
-  grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr) auto;
-  column-gap: 32px;
-  row-gap: 14px;
+  grid-template-columns: minmax(250px, 0.74fr) minmax(0, 0.96fr) minmax(340px, 0.8fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  column-gap: 28px;
+  row-gap: 18px;
   align-items: center;
   overflow: hidden;
   border-left: 8px solid #bed000;
@@ -129,7 +129,12 @@ onBeforeUnmount(() => {
 }
 
 .tercer-hallazgo__header {
-  grid-row: 1 / 3;
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+
+.tercer-hallazgo__column {
+  grid-row: 2;
 }
 
 .tercer-hallazgo__eyebrow {
@@ -209,17 +214,19 @@ onBeforeUnmount(() => {
 }
 
 .tercer-hallazgo__media {
-  grid-column: 2 / 4;
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 12px;
-  align-self: end;
+  align-self: center;
 }
 
 .tercer-hallazgo__figure {
   width: 100%;
+  max-width: 560px;
   min-width: 0;
-  aspect-ratio: 16 / 4.4;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
   background: #e5e6d2;
@@ -273,7 +280,7 @@ onBeforeUnmount(() => {
   }
 
   .tercer-hallazgo__figure {
-    aspect-ratio: 16 / 8;
+    aspect-ratio: 16 / 9;
   }
 }
 </style>

@@ -1,9 +1,15 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 import 'photoswipe/style.css'
 
 const imageBase = `${import.meta.env.BASE_URL}2026/tablero_1/images/`
+const videoModalAbierto = ref(false)
+const videoThumbnail = `${imageBase}empatia-podcast-thumbnail.jpg`
+const videoDriveId = '1PYhSRmdBLVS4E2ASr6IldZ33mxDAisv7'
+const videoUrl = computed(() =>
+  videoModalAbierto.value ? `https://drive.google.com/file/d/${videoDriveId}/preview` : '',
+)
 
 const imagenesSegundoHallazgo = [
   {
@@ -23,6 +29,30 @@ const imagenesSegundoHallazgo = [
 const galeriaSegundoHallazgo = ref(null)
 let lightbox = null
 
+const abrirVideo = () => {
+  videoModalAbierto.value = true
+}
+
+const cerrarVideo = () => {
+  videoModalAbierto.value = false
+}
+
+const manejarTeclaModal = (event) => {
+  if (event.key === 'Escape') {
+    cerrarVideo()
+  }
+}
+
+watch(videoModalAbierto, (abierto) => {
+  document.body.style.overflow = abierto ? 'hidden' : ''
+
+  if (abierto) {
+    window.addEventListener('keydown', manejarTeclaModal)
+  } else {
+    window.removeEventListener('keydown', manejarTeclaModal)
+  }
+})
+
 onMounted(() => {
   lightbox = new PhotoSwipeLightbox({
     gallery: galeriaSegundoHallazgo.value,
@@ -34,6 +64,9 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  document.body.style.overflow = ''
+  window.removeEventListener('keydown', manejarTeclaModal)
+  cerrarVideo()
   lightbox?.destroy()
   lightbox = null
 })
@@ -86,6 +119,21 @@ onBeforeUnmount(() => {
       </p>
     </section>
 
+    <section class="segundo-hallazgo__video" aria-labelledby="segundo-hallazgo-video-title">
+      <p id="segundo-hallazgo-video-title">Aquí encontrarás nuestras memorias del proyecto</p>
+      <button
+        class="video-card"
+        type="button"
+        aria-label="Ver memorias del proyecto"
+        @click="abrirVideo"
+      >
+        <img :src="videoThumbnail" alt="" loading="lazy" decoding="async" />
+        <span class="video-card__overlay" aria-hidden="true">
+          <i class="bi bi-play-fill"></i>
+        </span>
+      </button>
+    </section>
+
     <div
       ref="galeriaSegundoHallazgo"
       class="segundo-hallazgo__media"
@@ -105,21 +153,45 @@ onBeforeUnmount(() => {
         <img :src="imagen.src" :alt="imagen.alt" />
       </a>
     </div>
+
+    <Teleport to="body">
+      <div
+        v-if="videoModalAbierto"
+        class="video-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Memorias del proyecto"
+        tabindex="-1"
+        @click.self="cerrarVideo"
+      >
+        <button class="video-modal__close" type="button" aria-label="Cerrar video" @click="cerrarVideo">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+
+        <iframe
+          class="video-modal__frame"
+          :src="videoUrl"
+          title="Memorias del proyecto"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </Teleport>
   </main>
 </template>
 
 <style scoped>
 .segundo-hallazgo {
-  height: calc(100svh - 115px);
+  min-height: calc(100svh - 115px);
   width: 100%;
-  padding: 34px 54px;
+  padding: 26px 46px;
   display: grid;
   grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: minmax(0, 1fr) auto;
-  column-gap: 32px;
+  grid-template-rows: auto auto auto;
+  column-gap: 28px;
   row-gap: 14px;
-  align-items: center;
-  overflow: hidden;
+  align-items: start;
+  overflow: auto;
   border-left: 8px solid #bed000;
   background:
     linear-gradient(135deg, rgba(190, 208, 0, 0.24), rgba(190, 208, 0, 0) 42%),
@@ -130,15 +202,15 @@ onBeforeUnmount(() => {
 .segundo-hallazgo__header,
 .segundo-hallazgo__column {
   min-width: 0;
-  align-self: center;
+  align-self: start;
 }
 
 .segundo-hallazgo__header {
-  grid-row: 1 / 3;
+  grid-row: 1 / 4;
 }
 
 .segundo-hallazgo__eyebrow {
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   color: #5a6400;
   font-family: var(--body, system-ui, sans-serif);
   font-size: 12px;
@@ -159,7 +231,7 @@ onBeforeUnmount(() => {
 }
 
 .segundo-hallazgo__subtitle {
-  margin: 16px 0 0;
+  margin: 12px 0 0;
   color: #464834;
   font-family: var(--body, system-ui, sans-serif);
   font-size: clamp(14px, 1vw, 16px);
@@ -176,7 +248,7 @@ onBeforeUnmount(() => {
 }
 
 .segundo-hallazgo__column p + p {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .segundo-hallazgo__lead,
@@ -198,7 +270,7 @@ onBeforeUnmount(() => {
 }
 
 .segundo-hallazgo__question {
-  padding: 10px 12px;
+  padding: 8px 12px;
   border-left: 6px solid #bed000;
   background: rgba(240, 239, 220, 0.92);
   color: #1b1c11 !important;
@@ -207,10 +279,92 @@ onBeforeUnmount(() => {
 }
 
 .segundo-hallazgo__closing {
-  padding: 10px 12px;
+  padding: 8px 12px;
   border-radius: 8px;
   background: #f0efdc;
   color: #1b1c11 !important;
+}
+
+.segundo-hallazgo__video {
+  grid-column: 2 / 4;
+  align-self: start;
+  margin-top: 4px;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.42fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+}
+
+.segundo-hallazgo__video p {
+  margin: 0;
+  color: #4e5600;
+  font-family: var(--heading, system-ui, sans-serif);
+  font-size: clamp(15px, 1.18vw, 20px);
+  line-height: 1.12;
+  font-weight: 900;
+}
+
+.video-card {
+  width: 100%;
+  min-height: 142px;
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  border-radius: 8px;
+  padding: 0;
+  display: block;
+  background: #1b1c11;
+  box-shadow: 0 12px 26px rgba(27, 28, 17, 0.16);
+  cursor: pointer;
+}
+
+.video-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 142px;
+  display: block;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.video-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(27, 28, 17, 0.24);
+  color: #ffffff;
+  transition: background 180ms ease;
+}
+
+.video-card__overlay i {
+  width: 62px;
+  height: 62px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #bed000;
+  color: #1b1c11;
+  font-size: 48px;
+  line-height: 1;
+  box-shadow: 0 12px 24px rgba(27, 28, 17, 0.2);
+}
+
+.video-card:hover img,
+.video-card:focus-visible img {
+  transform: scale(1.025);
+}
+
+.video-card:hover .video-card__overlay,
+.video-card:focus-visible .video-card__overlay {
+  background: rgba(27, 28, 17, 0.36);
+}
+
+.video-card:focus-visible,
+.video-modal__close:focus-visible {
+  outline: 3px solid #5a6400;
+  outline-offset: 3px;
 }
 
 .segundo-hallazgo__media {
@@ -218,13 +372,13 @@ onBeforeUnmount(() => {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  align-self: end;
+  align-self: start;
 }
 
 .segundo-hallazgo__figure {
   width: 100%;
   min-width: 0;
-  aspect-ratio: 16 / 5.3;
+  aspect-ratio: 16 / 5.2;
   overflow: hidden;
   border-radius: 8px;
   background: #e5e6d2;
@@ -250,6 +404,43 @@ onBeforeUnmount(() => {
   outline-offset: 3px;
 }
 
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  padding: 70px 28px 28px;
+  display: grid;
+  place-items: center;
+  background: rgba(27, 28, 17, 0.92);
+}
+
+.video-modal__close {
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 1001;
+  border: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #bed000;
+  color: #1b1c11;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.video-modal__frame {
+  width: min(100%, 1180px);
+  height: min(78vh, 720px);
+  border: 0;
+  border-radius: 12px;
+  background: #000000;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+}
+
 @media (max-width: 860px) {
   .segundo-hallazgo {
     height: auto;
@@ -268,9 +459,14 @@ onBeforeUnmount(() => {
   }
 
   .segundo-hallazgo__header,
+  .segundo-hallazgo__video,
   .segundo-hallazgo__media {
     grid-column: auto;
     grid-row: auto;
+  }
+
+  .segundo-hallazgo__video {
+    grid-template-columns: 1fr;
   }
 
   .segundo-hallazgo__media {

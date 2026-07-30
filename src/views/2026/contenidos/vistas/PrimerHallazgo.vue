@@ -7,16 +7,16 @@ const imageBase = `${import.meta.env.BASE_URL}2026/tablero_1/images/`
 
 const imagenesPrimerHallazgo = [
   {
-    src: `${imageBase}primer-hallazgo-1.jpg`,
-    alt: 'Registro visual asociado al primer hallazgo de movilidad',
-    width: 1920,
-    height: 1032,
+    src: `${imageBase}prototipo-motociclista-carlos.jpeg`,
+    alt: 'Prototipo de motociclista Carlos asociado al primer hallazgo',
+    width: 1600,
+    height: 900,
   },
   {
-    src: `${imageBase}primer-hallazgo-2.jpg`,
-    alt: 'Escena urbana asociada al comportamiento vial del primer hallazgo',
-    width: 1920,
-    height: 1032,
+    src: `${imageBase}prototipo-motociclista-valentina.jpeg`,
+    alt: 'Prototipo de motociclista Valentina asociado al primer hallazgo',
+    width: 1600,
+    height: 900,
   },
 ]
 
@@ -225,7 +225,7 @@ onBeforeUnmount(() => {
 .primer-hallazgo__figure {
   width: 100%;
   min-width: 0;
-  aspect-ratio: 16 / 5.3;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
   background: #e5e6d2;
@@ -285,7 +285,7 @@ onBeforeUnmount(() => {
   }
 
   .primer-hallazgo__figure {
-    aspect-ratio: 16 / 8;
+    aspect-ratio: 16 / 9;
   }
 }
 </style>

@@ -39,26 +39,6 @@ onBeforeUnmount(() => {
   window.clearInterval(intervaloPortada)
 })
 
-const insights = [
-  {
-    icon: 'travel_explore',
-    value: '01',
-    label: 'Diagnóstico comportamental',
-    variant: 'lime',
-  },
-  {
-    icon: 'diversity_3',
-    value: '02',
-    label: 'Intervenciones culturales',
-    variant: 'green',
-  },
-  {
-    icon: 'school',
-    value: '03',
-    label: 'Aprendizajes para continuar',
-    variant: 'blue',
-  },
-]
 </script>
 
 <template>
@@ -113,11 +93,23 @@ const insights = [
           </div>
         </div>
 
-        <div class="signal-rings" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        <article class="overview-card hero__overview" aria-labelledby="overview-title">
+          <div>
+            <h2 id="overview-title">Una ruta de lectura</h2>
+            <p>
+              <strong>Lógica del Recorrido:</strong> Del diagnóstico a la transformación cultural.
+            </p>
+            <p>
+              En este espacio encontrarás una guía para explorar el sitio. Usa las pestañas superiores
+              para conocer el Diagnóstico Comportamental (Hallazgos) y las Intervenciones Culturales
+              (Motociclistas, Empatía, Embriaguez y Mal Parqueo).
+            </p>
+            <p>
+              Descubre cómo, a partir de estos hallazgos, se diseñan estrategias para promover una
+              movilidad más segura en la ciudad.
+            </p>
+          </div>
+        </article>
       </div>
 
       <div class="slide-indicator" aria-label="Imágenes de portada">
@@ -133,38 +125,6 @@ const insights = [
       </div>
     </section>
 
-    <section class="insights" aria-labelledby="overview-title">
-      <article class="overview-card">
-        <div>
-          <h2 id="overview-title">Una ruta de lectura</h2>
-          <p>
-            <strong>Lógica del Recorrido:</strong> Del diagnóstico a la transformación cultural.
-          </p>
-          <p>
-            En este espacio encontrarás una guía para explorar el sitio. Usa las pestañas superiores
-            para conocer el Diagnóstico Comportamental (Hallazgos) y las Intervenciones Culturales
-            (Motociclistas, Empatía, Embriaguez y Mal Parqueo).
-          </p>
-          <p>
-            Descubre cómo, a partir de estos hallazgos, se diseñan estrategias para promover una
-            movilidad más segura en la ciudad.
-          </p>
-        </div>
-      </article>
-
-      <article
-        v-for="insight in insights"
-        :key="insight.label"
-        class="insight-card"
-        :class="`insight-card--${insight.variant}`"
-      >
-        <span class="material-symbols-outlined insight-icon" aria-hidden="true">
-          {{ insight.icon }}
-        </span>
-        <strong>{{ insight.value }}</strong>
-        <small>{{ insight.label }}</small>
-      </article>
-    </section>
   </main>
 
 </template>

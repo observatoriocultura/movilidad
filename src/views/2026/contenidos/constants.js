@@ -144,6 +144,15 @@ export const vistasContenidos = [
     display: true,
   },
   {
+    number: 1087,
+    key: 'laboratorios_videos',
+    title: 'Videos de laboratorios',
+    nombre_vista: 'LaboratoriosVideos',
+    label: 'Videos de laboratorios',
+    capitulo: 'Laboratorios',
+    display: true,
+  },
+  {
     number: 1090,
     key: 'escuela_multiplicadores',
     title: 'Escuela de Multiplicadores',
