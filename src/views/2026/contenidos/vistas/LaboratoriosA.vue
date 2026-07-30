@@ -38,8 +38,6 @@ const fases = [
   },
 ]
 
-const urlLaboratorios =
-  'https://docs.google.com/presentation/d/1XQ_LziIS-3kPCkcidLu3PWMyNNxML_q1heH9CDTL4E0/edit?slide=id.g36366141a89_0_133#slide=id.g36366141a89_0_133'
 </script>
 
 <template>
@@ -140,16 +138,6 @@ const urlLaboratorios =
         </article>
       </div>
     </section>
-
-    <footer class="contenido-panel laboratorios-a__footer" aria-label="Más información sobre laboratorios">
-      <div class="footer-title">
-        <i class="bi bi-box-arrow-up-right contenido-icon contenido-icon--brand" aria-hidden="true"></i>
-        <strong>Para conocer más sobre los laboratorios</strong>
-      </div>
-
-      <p>Consultar la presentación del proceso de los laboratorios:</p>
-      <a :href="urlLaboratorios" target="_blank" rel="noopener noreferrer">{{ urlLaboratorios }}</a>
-    </footer>
   </main>
 </template>
 
@@ -289,9 +277,7 @@ const urlLaboratorios =
 
 .info-card p,
 .participants-card p,
-.phase-row p,
-.laboratorios-a__footer p,
-.laboratorios-a__footer a {
+.phase-row p {
   margin: 0;
   color: var(--contenidos-texto);
   font-family: var(--body, system-ui, sans-serif);
@@ -379,54 +365,6 @@ const urlLaboratorios =
   font-weight: 900;
 }
 
-.laboratorios-a__footer {
-  grid-column: 1 / 3;
-  min-width: 0;
-  padding: 12px 18px;
-  display: grid;
-  grid-template-columns: 330px auto minmax(0, 1fr);
-  gap: 18px;
-  align-items: center;
-}
-
-.footer-title {
-  min-width: 0;
-  display: grid;
-  grid-template-columns: 58px minmax(0, 1fr);
-  gap: 14px;
-  align-items: center;
-  padding-right: 18px;
-  border-right: 2px solid rgba(var(--color-1-rgb), 0.58);
-}
-
-.footer-title .bi {
-  width: 54px;
-  height: 54px;
-  font-size: 29px;
-}
-
-.footer-title strong {
-  color: #6f7b00;
-  font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(14px, 1.08vw, 18px);
-  line-height: 1.12;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.laboratorios-a__footer p {
-  font-weight: 700;
-}
-
-.laboratorios-a__footer a {
-  min-width: 0;
-  overflow: hidden;
-  color: #005fd3;
-  text-decoration: underline;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 @media (max-width: 1180px) {
   .laboratorios-a {
     height: auto;
@@ -437,19 +375,9 @@ const urlLaboratorios =
   .intro-card,
   .participants-card,
   .info-grid,
-  .phases-panel,
-  .laboratorios-a__footer {
+  .phases-panel {
     grid-column: auto;
     grid-row: auto;
-  }
-
-  .laboratorios-a__footer {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-title {
-    border-right: 0;
-    padding-right: 0;
   }
 }
 

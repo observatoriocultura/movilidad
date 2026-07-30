@@ -288,8 +288,21 @@
   line-height: 1.3;
 }
 
-.metric-card strong {
+.motociclistas-view__intro strong,
+.motociclistas-view__focus p strong {
+  color: #f1ff36;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 800;
+}
+
+.metric-card p strong {
   color: #4e5600;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 800;
 }
 
 .motociclistas-view__callout {

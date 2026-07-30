@@ -1,4 +1,43 @@
 <script setup>
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
+
+const videoModalAbierto = ref(false)
+const videoThumbnail = `${import.meta.env.BASE_URL}2026/tablero_1/images/empatia-video-thumbnail.jpg`
+const videoDriveId = '1hZhz4BFxpBp0C-BAfxz0Rv1ri4w88bsb'
+const videoUrl = computed(() =>
+  videoModalAbierto.value ? `https://drive.google.com/file/d/${videoDriveId}/preview` : '',
+)
+
+const abrirVideo = () => {
+  videoModalAbierto.value = true
+}
+
+const cerrarVideo = () => {
+  videoModalAbierto.value = false
+}
+
+const manejarTeclaModal = (event) => {
+  if (event.key === 'Escape') {
+    cerrarVideo()
+  }
+}
+
+watch(videoModalAbierto, (abierto) => {
+  document.body.style.overflow = abierto ? 'hidden' : ''
+
+  if (abierto) {
+    window.addEventListener('keydown', manejarTeclaModal)
+  } else {
+    window.removeEventListener('keydown', manejarTeclaModal)
+  }
+})
+
+onBeforeUnmount(() => {
+  document.body.style.overflow = ''
+  window.removeEventListener('keydown', manejarTeclaModal)
+  cerrarVideo()
+})
+
 const acciones = [
   {
     numero: '01',
@@ -66,14 +105,44 @@ const acciones = [
         <h2 id="empatia-resultados-title">Resultados</h2>
         <span class="section-mark" aria-hidden="true"></span>
 
-        <div class="pending-card">
-          <div class="pending-card__icon" aria-hidden="true">
-            <i class="bi bi-clipboard-check"></i>
-          </div>
-          <strong>Pendiente</strong>
-        </div>
+        <button
+          class="video-card"
+          type="button"
+          aria-label="Ver video Al Dar Vía das Vida"
+          @click="abrirVideo"
+        >
+          <img :src="videoThumbnail" alt="" loading="lazy" decoding="async" />
+          <span class="video-card__overlay" aria-hidden="true">
+            <strong>Al Dar Vía das Vida</strong>
+            <i class="bi bi-play-fill"></i>
+          </span>
+        </button>
       </section>
     </aside>
+
+    <Teleport to="body">
+      <div
+        v-if="videoModalAbierto"
+        class="video-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Video Al Dar Vía das Vida"
+        tabindex="-1"
+        @click.self="cerrarVideo"
+      >
+        <button class="video-modal__close" type="button" aria-label="Cerrar video" @click="cerrarVideo">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+
+        <iframe
+          class="video-modal__frame"
+          :src="videoUrl"
+          title="Al Dar Vía das Vida"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </Teleport>
   </main>
 </template>
 
@@ -277,39 +346,117 @@ const acciones = [
   min-width: 0;
 }
 
-.pending-card {
-  min-height: 132px;
-  padding: 18px 24px;
-  display: grid;
-  grid-template-columns: 110px minmax(0, 1fr);
-  gap: 24px;
-  align-items: center;
+.video-card {
+  width: 100%;
+  min-height: 260px;
+  position: relative;
+  overflow: hidden;
+  border: 0;
   border-radius: 12px;
-  background:
-    linear-gradient(90deg, rgba(var(--color-1-rgb), 0.12), rgba(var(--color-1-rgb), 0.05)),
-    #f5f5eb;
+  padding: 0;
+  display: block;
+  background: var(--contenidos-texto);
+  box-shadow: 0 16px 34px rgba(8, 15, 37, 0.16);
+  cursor: pointer;
 }
 
-.pending-card__icon {
-  width: 88px;
-  height: 88px;
+.video-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  display: block;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.video-card__overlay {
+  position: absolute;
+  inset: 0;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 18px;
+  background: linear-gradient(180deg, rgba(8, 15, 37, 0.12), rgba(8, 15, 37, 0.72));
+  color: #ffffff;
+  transition: background 180ms ease;
+}
+
+.video-card__overlay strong {
+  max-width: 340px;
+  color: #ffffff;
+  font-family: var(--heading, system-ui, sans-serif);
+  font-size: clamp(24px, 2.25vw, 36px);
+  line-height: 1.02;
+  font-weight: 900;
+}
+
+.video-card__overlay i {
+  width: 74px;
+  height: 74px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(var(--color-1-rgb), 0.13);
-  color: #5a6400;
-  font-size: 56px;
+  background: var(--color-1);
+  color: #1b1c11;
+  font-size: 58px;
   line-height: 1;
+  box-shadow: 0 16px 32px rgba(8, 15, 37, 0.24);
 }
 
-.pending-card strong {
-  color: var(--contenidos-texto);
-  font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(22px, 1.7vw, 30px);
-  line-height: 1;
-  font-weight: 900;
-  text-transform: uppercase;
+.video-card:hover img,
+.video-card:focus-visible img {
+  transform: scale(1.025);
+}
+
+.video-card:hover .video-card__overlay,
+.video-card:focus-visible .video-card__overlay {
+  background: linear-gradient(180deg, rgba(8, 15, 37, 0.18), rgba(8, 15, 37, 0.82));
+}
+
+.video-card:focus-visible,
+.video-modal__close:focus-visible {
+  outline: 3px solid var(--color-1);
+  outline-offset: 3px;
+}
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  padding: 70px 28px 28px;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 15, 37, 0.92);
+}
+
+.video-modal__close {
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 1001;
+  border: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-1);
+  color: #1b1c11;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.video-modal__frame {
+  width: min(100%, 1180px);
+  height: min(78vh, 720px);
+  border: 0;
+  border-radius: 12px;
+  background: #000000;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
 }
 
 @media (max-width: 1180px) {
@@ -336,7 +483,7 @@ const acciones = [
 
   .implementaciones-table__head,
   .action-row,
-  .pending-card {
+  .video-card {
     grid-template-columns: 1fr;
   }
 

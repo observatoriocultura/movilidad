@@ -289,7 +289,6 @@ h1 strong {
 .hero__meta,
 .footer strong,
 .footer nav a,
-.method-link,
 .insight-card small {
   font-size: 12px;
   line-height: 16px;
@@ -445,27 +444,20 @@ h2 {
 }
 
 .overview-card p {
-  max-width: 560px;
+  max-width: 680px;
   margin: 0;
   color: var(--text-muted);
   font-size: 16px;
   line-height: 24px;
 }
 
-.method-link {
-  width: fit-content;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--secondary);
+.overview-card p + p {
+  margin-top: 12px;
 }
 
-.method-link span {
-  transition: transform 180ms ease;
-}
-
-.method-link:hover span {
-  transform: translateX(4px);
+.overview-card strong {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .insight-card {

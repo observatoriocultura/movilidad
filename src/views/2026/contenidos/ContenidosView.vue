@@ -1,9 +1,9 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import MainMenu from '../../../components/MainMenu.vue'
 import './contenidos.css'
 import { vistasContenidos } from './constants'
-import VistasNav from './parts/VistasNav.vue'
 import InicioEstructura from './vistas/InicioEstructura.vue'
 import InicioView from './vistas/InicioView.vue'
 import RespuestasView from './vistas/RespuestasView.vue'
@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
 
 <template>
   <main class="contenidos-view">
-    <VistasNav :active-key="vistaActiva" />
+    <MainMenu :active-key="vistaActiva" />
 
     <section class="contenidos-view__panel" aria-live="polite">
       <component :is="componenteActivo" v-if="componenteActivo" />
@@ -133,11 +133,17 @@ onBeforeUnmount(() => {
 <style scoped>
 .contenidos-view {
   min-height: 100svh;
-  padding: 5px 0px;
+  padding: 80px 0 5px;
   background: var(--contenidos-fondo);
 }
 
 .contenidos-view__panel {
   margin-top: 0px;
+}
+
+@media (max-width: 980px) {
+  .contenidos-view {
+    padding-top: 72px;
+  }
 }
 </style>

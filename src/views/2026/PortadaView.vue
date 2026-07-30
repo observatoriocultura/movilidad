@@ -1,9 +1,8 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import MainMenu from '../../components/MainMenu.vue'
 import logoAquiSi from '../../assets/images/app/logos-distrito-aqui-si-pasa-mi-ciudad-mi casa.svg'
 import logoBogota from '../../assets/images/app/logos-distrito-bogota-estrella.svg'
-
-const menuAbierto = ref(false)
 
 const portadaBase = `${import.meta.env.BASE_URL}2026/tablero_1/portada/`
 const imagenesPortada = [
@@ -28,10 +27,6 @@ const cambiarImagen = (indice) => {
   iniciarCarrusel()
 }
 
-const cerrarMenu = () => {
-  menuAbierto.value = false
-}
-
 const avanzarImagen = () => {
   imagenActiva.value = (imagenActiva.value + 1) % imagenesPortada.length
 }
@@ -43,24 +38,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.clearInterval(intervaloPortada)
 })
-
-const metrics = [
-  {
-    label: 'Convenio',
-    value: '611',
-    detail: 'Interadministrativo 2025',
-  },
-  {
-    label: 'Casos priorizados',
-    value: '2',
-    detail: 'Motociclistas y empatía vial',
-  },
-  {
-    label: 'Ruta de trabajo',
-    value: '7',
-    detail: 'Capítulos de contexto y acción',
-  },
-]
 
 const insights = [
   {
@@ -85,37 +62,7 @@ const insights = [
 </script>
 
 <template>
-  <header class="topbar">
-    <nav class="topbar__inner" aria-label="Navegación principal">
-      <button
-        class="menu-toggle"
-        type="button"
-        :aria-expanded="menuAbierto"
-        aria-controls="portada-menu"
-        :aria-label="menuAbierto ? 'Cerrar menú principal' : 'Abrir menú principal'"
-        @click="menuAbierto = !menuAbierto"
-      >
-        <span class="material-symbols-outlined" aria-hidden="true">
-          {{ menuAbierto ? 'close' : 'menu' }}
-        </span>
-      </button>
-
-      <div
-        id="portada-menu"
-        class="navlinks"
-        :class="{ 'navlinks--open': menuAbierto }"
-        aria-label="Secciones principales"
-      >
-        <RouterLink to="/contenidos/primer_hallazgo" @click="cerrarMenu">Hallazgos</RouterLink>
-        <RouterLink to="/contenidos/motociclistas" @click="cerrarMenu">Motociclistas</RouterLink>
-        <RouterLink to="/contenidos/empatia_a" @click="cerrarMenu">Empatía</RouterLink>
-        <RouterLink to="/contenidos/laboratorios_a" @click="cerrarMenu">Laboratorios</RouterLink>
-        <RouterLink to="/contenidos/aprendizajes_a" @click="cerrarMenu">Aprendizajes</RouterLink>
-      </div>
-
-      <RouterLink class="report-button" to="/contenidos" @click="cerrarMenu">Iniciar</RouterLink>
-    </nav>
-  </header>
+  <MainMenu />
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
@@ -146,24 +93,16 @@ const insights = [
           <p class="eyebrow"><span></span> Convenio Interadministrativo 611 de 2025</p>
 
           <h1 id="hero-title">
-            Del diagnóstico
-            <strong>a la transformación cultural</strong>
+            Cultura Ciudadana
+            <strong>para la Movilidad</strong>
           </h1>
 
           <p class="hero__summary">
-            Una experiencia navegable sobre cómo la Secretaría Distrital de Movilidad y la
-            Secretaría Distrital de Cultura, Recreación y Deporte integran cultura ciudadana,
-            movilidad segura y ciencias del comportamiento para comprender por qué actuamos como
-            actuamos en la vía.
+            En este sitio encontrarás toda la información del convenio 611 de 2025 realizado entre
+            la Secretaria Distrital de Movilidad y la Secretaría Distrital de Cultura, Recreación y
+            Deporte. Un convenio que integra la cultura ciudadana, movilidad segura y las ciencias
+            del comportamiento.
           </p>
-
-          <div class="metric-grid" aria-label="Datos destacados del convenio">
-            <article v-for="metric in metrics" :key="metric.label" class="metric-card">
-              <span>{{ metric.label }}</span>
-              <strong>{{ metric.value }}</strong>
-              <small>{{ metric.detail }}</small>
-            </article>
-          </div>
 
           <div class="hero__meta" aria-label="Información del producto">
             <span>Junio de 2026</span>
@@ -199,15 +138,18 @@ const insights = [
         <div>
           <h2 id="overview-title">Una ruta de lectura</h2>
           <p>
-            El contenido avanza desde las preguntas iniciales hasta los hallazgos, estrategias,
-            laboratorios, escuela de multiplicadores y aprendizajes estratégicos del proceso.
+            <strong>Lógica del Recorrido:</strong> Del diagnóstico a la transformación cultural.
+          </p>
+          <p>
+            En este espacio encontrarás una guía para explorar el sitio. Usa las pestañas superiores
+            para conocer el Diagnóstico Comportamental (Hallazgos) y las Intervenciones Culturales
+            (Motociclistas, Empatía, Embriaguez y Mal Parqueo).
+          </p>
+          <p>
+            Descubre cómo, a partir de estos hallazgos, se diseñan estrategias para promover una
+            movilidad más segura en la ciudad.
           </p>
         </div>
-
-        <RouterLink class="method-link" to="/contenidos/respuestas">
-          Entrar al contexto
-          <span aria-hidden="true">-></span>
-        </RouterLink>
       </article>
 
       <article
@@ -226,105 +168,3 @@ const insights = [
   </main>
 
 </template>
-
-<style scoped>
-.menu-toggle {
-  display: none;
-}
-
-@media (max-width: 1120px) {
-  .topbar__inner {
-    gap: 12px;
-  }
-
-  .navlinks {
-    gap: 6px;
-    font-size: 11px;
-  }
-
-  .navlinks a {
-    padding-inline: 8px;
-  }
-}
-
-@media (max-width: 760px) {
-  .topbar__inner {
-    min-height: 64px;
-    padding: 10px 16px;
-    display: grid;
-    grid-template-columns: 44px auto minmax(0, 1fr);
-    gap: 8px 12px;
-  }
-
-  .menu-toggle {
-    grid-column: 1;
-    grid-row: 1;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    display: inline-grid;
-    place-items: center;
-    border: 1px solid rgba(90, 100, 0, 0.18);
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.64);
-    color: var(--primary);
-    cursor: pointer;
-  }
-
-  .menu-toggle:focus-visible {
-    outline: 2px solid var(--primary-bright);
-    outline-offset: 2px;
-  }
-
-  .menu-toggle .material-symbols-outlined {
-    font-size: 28px;
-    line-height: 1;
-  }
-
-  .report-button {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: start;
-  }
-
-  .navlinks {
-    width: 100%;
-    max-height: 0;
-    grid-column: 1 / -1;
-    grid-row: 2;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    overflow: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transition:
-      max-height 220ms ease,
-      opacity 160ms ease;
-  }
-
-  .navlinks--open {
-    max-height: 280px;
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .navlinks a {
-    min-height: 40px;
-    padding: 10px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(199, 200, 173, 0.6);
-    background: rgba(255, 255, 255, 0.48);
-    text-align: center;
-    white-space: normal;
-  }
-}
-
-@media (max-width: 420px) {
-  .navlinks {
-    grid-template-columns: 1fr;
-  }
-}
-</style>

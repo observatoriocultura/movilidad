@@ -1,4 +1,43 @@
 <script setup>
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
+
+const videoModalAbierto = ref(false)
+const videoThumbnail = `${import.meta.env.BASE_URL}2026/tablero_1/images/motociclistas-video-thumbnail.jpg`
+const videoDriveId = '1mIj4QHAB61lkXllRxoVkZqy74UXZxtrX'
+const videoUrl = computed(() =>
+  videoModalAbierto.value ? `https://drive.google.com/file/d/${videoDriveId}/preview` : '',
+)
+
+const abrirVideo = () => {
+  videoModalAbierto.value = true
+}
+
+const cerrarVideo = () => {
+  videoModalAbierto.value = false
+}
+
+const manejarTeclaModal = (event) => {
+  if (event.key === 'Escape') {
+    cerrarVideo()
+  }
+}
+
+watch(videoModalAbierto, (abierto) => {
+  document.body.style.overflow = abierto ? 'hidden' : ''
+
+  if (abierto) {
+    window.addEventListener('keydown', manejarTeclaModal)
+  } else {
+    window.removeEventListener('keydown', manejarTeclaModal)
+  }
+})
+
+onBeforeUnmount(() => {
+  document.body.style.overflow = ''
+  window.removeEventListener('keydown', manejarTeclaModal)
+  cerrarVideo()
+})
+
 const acciones = [
   {
     numero: '01',
@@ -32,19 +71,19 @@ const acciones = [
 const documentos = [
   {
     titulo: 'Diseño de estrategia',
-    url: 'https://docs.google.com/document/d/1GNVctZw1LFEa6qLw-Zmebt71hmYMkaL_/edit?usp=sharing&ouid=106533408026140613709&rtpof=true&sd=true',
+    url: 'https://drive.google.com/file/d/1bxnrPmowLHBgd8xxC_PipcOC1JRkRtMA/view?usp=drive_link',
   },
   {
     titulo: 'Protocolo de implementación acción de teatro invisible',
-    url: 'https://docs.google.com/document/d/1CrTs2XrkJPDD9iObTbYoToGFcC3DrqNQ/edit?usp=sharing&ouid=106533408026140613709&rtpof=true&sd=true',
+    url: 'https://drive.google.com/file/d/17KJ0uByBymGAWZo9A1f7hn9KvDnie-Tu/view?usp=drive_link',
   },
   {
     titulo: 'Protocolo de implementación acción de experimentos sociales',
-    url: 'https://docs.google.com/document/d/1xIn3sgvoeDj49bL94msWujQ8CYZxNA7x/edit?usp=sharing&ouid=106533408026140613709&rtpof=true&sd=true',
+    url: 'https://drive.google.com/file/d/1LUndkv0czDWIxZxrcvDAfVGuaXm6P-2n/view?usp=drive_link',
   },
   {
     titulo: 'Protocolo de implementación de Circuito pedagógico',
-    url: 'https://docs.google.com/document/d/14r5HBXOHAOf54Yj5dZdSUUWjfvjB7Ou5/edit?usp=sharing&ouid=106533408026140613709&rtpof=true&sd=true',
+    url: 'https://drive.google.com/file/d/1kgWz1guoZBrARTzTWbpGprDCkkKkoyAb/view?usp=drive_link',
   },
 ]
 </script>
@@ -89,12 +128,17 @@ const documentos = [
         <h2 id="resultados-title">Resultados</h2>
         <span class="section-mark" aria-hidden="true"></span>
 
-        <div class="pending-card">
-          <div class="pending-card__icon" aria-hidden="true">
-            <i class="bi bi-clipboard-check"></i>
-          </div>
-          <strong>Pendiente</strong>
-        </div>
+        <button
+          class="video-card"
+          type="button"
+          aria-label="Ver video de resultados de motociclistas"
+          @click="abrirVideo"
+        >
+          <img :src="videoThumbnail" alt="" loading="lazy" decoding="async" />
+          <span class="video-card__overlay" aria-hidden="true">
+            <i class="bi bi-play-fill"></i>
+          </span>
+        </button>
       </section>
 
       <section class="resultados-panel__block" aria-labelledby="documentos-title">
@@ -111,12 +155,37 @@ const documentos = [
             :rel="documento.url ? 'noopener noreferrer' : undefined"
             @click="!documento.url && $event.preventDefault()"
           >
-            <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+            <i class="bi bi-filetype-pdf" aria-hidden="true"></i>
             <span>{{ documento.titulo }}</span>
           </a>
         </nav>
       </section>
     </aside>
+
+    <Teleport to="body">
+      <div
+        v-if="videoModalAbierto"
+        class="video-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Video de resultados de motociclistas"
+        tabindex="-1"
+        @click.self="cerrarVideo"
+        @keydown="manejarTeclaModal"
+      >
+        <button class="video-modal__close" type="button" aria-label="Cerrar video" @click="cerrarVideo">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+
+        <iframe
+          class="video-modal__frame"
+          :src="videoUrl"
+          title="Video de resultados de motociclistas"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </Teleport>
   </main>
 </template>
 
@@ -316,39 +385,104 @@ const documentos = [
   min-width: 0;
 }
 
-.pending-card {
-  min-height: 124px;
-  padding: 18px 24px;
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 26px;
-  align-items: center;
+.video-card {
+  width: 100%;
+  min-height: 230px;
+  position: relative;
+  overflow: hidden;
+  border: 0;
   border-radius: 12px;
-  background:
-    linear-gradient(90deg, rgba(190, 208, 0, 0.12), rgba(190, 208, 0, 0.05)),
-    #f5f5eb;
+  padding: 0;
+  display: block;
+  background: #070d35;
+  box-shadow: 0 16px 34px rgba(7, 13, 53, 0.16);
+  cursor: pointer;
 }
 
-.pending-card__icon {
-  width: 96px;
-  height: 96px;
+.video-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 230px;
+  display: block;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.video-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 13, 53, 0.22);
+  color: #ffffff;
+  font-size: 76px;
+  line-height: 1;
+  transition: background 180ms ease;
+}
+
+.video-card__overlay i {
+  width: 92px;
+  height: 92px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(190, 208, 0, 0.13);
-  color: #a7ba00;
-  font-size: 60px;
-  line-height: 1;
+  background: #bed000;
+  color: #070d35;
+  box-shadow: 0 16px 32px rgba(7, 13, 53, 0.22);
 }
 
-.pending-card strong {
+.video-card:hover img,
+.video-card:focus-visible img {
+  transform: scale(1.025);
+}
+
+.video-card:hover .video-card__overlay,
+.video-card:focus-visible .video-card__overlay {
+  background: rgba(7, 13, 53, 0.34);
+}
+
+.video-card:focus-visible,
+.video-modal__close:focus-visible {
+  outline: 3px solid #bed000;
+  outline-offset: 3px;
+}
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  padding: 70px 28px 28px;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 13, 53, 0.92);
+}
+
+.video-modal__close {
+  width: 48px;
+  height: 48px;
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 1001;
+  border: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #bed000;
   color: #070d35;
-  font-family: var(--heading, system-ui, sans-serif);
-  font-size: clamp(21px, 1.62vw, 28px);
-  line-height: 1;
-  font-weight: 900;
-  text-transform: uppercase;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.video-modal__frame {
+  width: min(100%, 1180px);
+  height: min(78vh, 720px);
+  border: 0;
+  border-radius: 12px;
+  background: #000000;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
 }
 
 .documents-list {
@@ -368,7 +502,7 @@ const documentos = [
   border-radius: 10px;
   background: #ffffff;
   box-shadow: 0 4px 14px rgba(7, 13, 53, 0.08);
-  color: #005fd3;
+  color: #303125;
   font-family: var(--body, system-ui, sans-serif);
   font-size: clamp(13px, 0.88vw, 15px);
   line-height: 1.18;
@@ -384,11 +518,11 @@ const documentos = [
   grid-column: 2;
   grid-row: 1;
   align-self: center;
-  background: rgba(0, 95, 211, 0.5);
+  background: rgba(48, 49, 37, 0.24);
 }
 
 .documents-list i {
-  color: #005fd3;
+  color: #c62828;
   font-size: 32px;
   line-height: 1;
 }
@@ -422,7 +556,7 @@ const documentos = [
 
   .implementaciones-table__head,
   .action-row,
-  .pending-card {
+  .video-card {
     grid-template-columns: 1fr;
   }
 
