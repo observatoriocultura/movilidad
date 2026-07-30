@@ -68,24 +68,6 @@ const acciones = [
   },
 ]
 
-const documentos = [
-  {
-    titulo: 'Diseño de estrategia',
-    url: 'https://drive.google.com/file/d/1bxnrPmowLHBgd8xxC_PipcOC1JRkRtMA/view?usp=drive_link',
-  },
-  {
-    titulo: 'Protocolo de implementación acción de teatro invisible',
-    url: 'https://drive.google.com/file/d/17KJ0uByBymGAWZo9A1f7hn9KvDnie-Tu/view?usp=drive_link',
-  },
-  {
-    titulo: 'Protocolo de implementación acción de experimentos sociales',
-    url: 'https://drive.google.com/file/d/1LUndkv0czDWIxZxrcvDAfVGuaXm6P-2n/view?usp=drive_link',
-  },
-  {
-    titulo: 'Protocolo de implementación de Circuito pedagógico',
-    url: 'https://drive.google.com/file/d/1kgWz1guoZBrARTzTWbpGprDCkkKkoyAb/view?usp=drive_link',
-  },
-]
 </script>
 
 <template>
@@ -123,7 +105,7 @@ const documentos = [
       <span></span>
     </div>
 
-    <aside class="resultados-panel" aria-label="Resultados y documentos relacionados">
+    <aside class="resultados-panel" aria-label="Resultados">
       <section class="resultados-panel__block" aria-labelledby="resultados-title">
         <h2 id="resultados-title">Resultados</h2>
         <span class="section-mark" aria-hidden="true"></span>
@@ -141,25 +123,6 @@ const documentos = [
         </button>
       </section>
 
-      <section class="resultados-panel__block" aria-labelledby="documentos-title">
-        <h2 id="documentos-title">Documentos relacionados</h2>
-        <span class="section-mark" aria-hidden="true"></span>
-
-        <nav class="documents-list" aria-label="Documentos relacionados">
-          <a
-            v-for="documento in documentos"
-            :key="documento.titulo"
-            :href="documento.url || '#'"
-            :aria-disabled="!documento.url"
-            :target="documento.url ? '_blank' : undefined"
-            :rel="documento.url ? 'noopener noreferrer' : undefined"
-            @click="!documento.url && $event.preventDefault()"
-          >
-            <i class="bi bi-filetype-pdf" aria-hidden="true"></i>
-            <span>{{ documento.titulo }}</span>
-          </a>
-        </nav>
-      </section>
     </aside>
 
     <Teleport to="body">
@@ -485,53 +448,6 @@ const documentos = [
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
 }
 
-.documents-list {
-  display: grid;
-  gap: 10px;
-}
-
-.documents-list a {
-  min-height: 66px;
-  width: 100%;
-  padding: 11px 18px;
-  display: grid;
-  grid-template-columns: 46px 1px minmax(0, 1fr);
-  gap: 16px;
-  align-items: center;
-  border: 1px solid rgba(7, 13, 53, 0.08);
-  border-radius: 10px;
-  background: #ffffff;
-  box-shadow: 0 4px 14px rgba(7, 13, 53, 0.08);
-  color: #303125;
-  font-family: var(--body, system-ui, sans-serif);
-  font-size: clamp(13px, 0.88vw, 15px);
-  line-height: 1.18;
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.documents-list a::before {
-  content: "";
-  width: 1px;
-  height: 34px;
-  grid-column: 2;
-  grid-row: 1;
-  align-self: center;
-  background: rgba(48, 49, 37, 0.24);
-}
-
-.documents-list i {
-  color: #c62828;
-  font-size: 32px;
-  line-height: 1;
-}
-
-.documents-list span {
-  min-width: 0;
-  grid-column: 3;
-}
-
 @media (max-width: 1180px) {
   .motociclistas-implementaciones {
     height: auto;
@@ -586,13 +502,5 @@ const documentos = [
     grid-template-columns: 44px minmax(0, 1fr);
   }
 
-  .documents-list a {
-    grid-template-columns: 44px 1px minmax(0, 1fr);
-    gap: 14px;
-  }
-
-  .documents-list a::before {
-    display: none;
-  }
 }
 </style>
