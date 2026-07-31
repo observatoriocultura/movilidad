@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { vistasContenidos } from '../views/2026/contenidos/constants'
 
@@ -11,6 +11,7 @@ const props = defineProps({
 })
 
 const route = useRoute()
+const menuRef = ref(null)
 const menuAbierto = ref(false)
 const grupoAbierto = ref(null)
 
@@ -67,16 +68,24 @@ const alternarGrupo = (key) => {
   grupoAbierto.value = grupoAbierto.value === key ? null : key
 }
 
+const permiteHover = () => window.matchMedia('(min-width: 992px) and (hover: hover)').matches
+
 const abrirGrupo = (key) => {
+  if (!permiteHover()) return
+
   grupoAbierto.value = key
 }
 
 const cerrarGrupo = () => {
+  if (!permiteHover()) return
+
   grupoAbierto.value = null
 }
 
 const cerrarGrupoSiSale = (event) => {
+  if (!permiteHover()) return
   if (event.currentTarget.contains(event.relatedTarget)) return
+
   cerrarGrupo()
 }
 
@@ -85,16 +94,44 @@ const cerrarTodo = () => {
   grupoAbierto.value = null
 }
 
+const cerrarConEscape = (event) => {
+  if (event.key !== 'Escape') return
+
+  cerrarTodo()
+}
+
+const cerrarAlHacerClickFuera = (event) => {
+  if (!menuAbierto.value || menuRef.value?.contains(event.target)) return
+
+  cerrarTodo()
+}
+
+const cerrarAlCambiarAEscritorio = () => {
+  if (window.innerWidth >= 992) cerrarTodo()
+}
+
 watch(
   () => route.fullPath,
   () => {
     cerrarTodo()
   },
 )
+
+onMounted(() => {
+  document.addEventListener('pointerdown', cerrarAlHacerClickFuera)
+  document.addEventListener('keydown', cerrarConEscape)
+  window.addEventListener('resize', cerrarAlCambiarAEscritorio)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('pointerdown', cerrarAlHacerClickFuera)
+  document.removeEventListener('keydown', cerrarConEscape)
+  window.removeEventListener('resize', cerrarAlCambiarAEscritorio)
+})
 </script>
 
 <template>
-  <header class="topbar">
+  <header ref="menuRef" class="topbar">
     <nav class="topbar__inner main-menu" aria-label="Navegacion principal">
       <button
         class="menu-toggle"
@@ -108,6 +145,8 @@ watch(
           {{ menuAbierto ? 'close' : 'menu' }}
         </span>
       </button>
+
+      <span class="main-menu__mobile-title">Menú de contenidos</span>
 
       <RouterLink class="main-menu__home" to="/" aria-label="Ir a portada" @click="cerrarTodo">
         <i class="bi bi-house-fill" aria-hidden="true"></i>
@@ -170,6 +209,10 @@ watch(
 }
 
 .menu-toggle {
+  display: none;
+}
+
+.main-menu__mobile-title {
   display: none;
 }
 
@@ -236,8 +279,6 @@ watch(
   transition: transform 180ms ease;
 }
 
-.main-menu__group:hover .main-menu__section,
-.main-menu__group:focus-within .main-menu__section,
 .main-menu__group--active .main-menu__section,
 .main-menu__group--open .main-menu__section {
   background: rgba(190, 208, 0, 0.14);
@@ -245,8 +286,6 @@ watch(
   transform: translateY(-1px);
 }
 
-.main-menu__group:hover .main-menu__section i,
-.main-menu__group:focus-within .main-menu__section i,
 .main-menu__group--open .main-menu__section i {
   transform: rotate(180deg);
 }
@@ -283,13 +322,33 @@ watch(
   content: '';
 }
 
-.main-menu__group:hover .main-menu__dropdown,
-.main-menu__group:focus-within .main-menu__dropdown,
 .main-menu__group--open .main-menu__dropdown {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, 0);
   visibility: visible;
+}
+
+@media (min-width: 992px) {
+  .main-menu__group:hover .main-menu__section,
+  .main-menu__group:focus-within .main-menu__section {
+    background: rgba(190, 208, 0, 0.14);
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
+
+  .main-menu__group:hover .main-menu__section i,
+  .main-menu__group:focus-within .main-menu__section i {
+    transform: rotate(180deg);
+  }
+
+  .main-menu__group:hover .main-menu__dropdown,
+  .main-menu__group:focus-within .main-menu__dropdown {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+    visibility: visible;
+  }
 }
 
 .main-menu__dropdown-link {
@@ -326,18 +385,34 @@ watch(
     font-size: 11px;
   }
 
+  .main-menu__group {
+    position: static;
+  }
+
   .main-menu__section {
     padding-inline: 8px;
   }
+
+  .main-menu__dropdown {
+    width: min(320px, calc(100vw - 32px));
+    left: 50%;
+  }
+
+  .main-menu__dropdown-link {
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 991.98px) {
   .topbar__inner {
     min-height: 64px;
     padding: 10px 16px;
     display: grid;
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 8px 10px;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    gap: 10px;
   }
 
   .menu-toggle {
@@ -351,6 +426,17 @@ watch(
     background: rgba(255, 255, 255, 0.64);
     color: var(--primary);
     cursor: pointer;
+  }
+
+  .main-menu__mobile-title {
+    min-width: 0;
+    display: block;
+    color: var(--primary);
+    font-family: var(--heading);
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 700;
+    text-align: center;
   }
 
   .menu-toggle:focus-visible {
@@ -371,49 +457,73 @@ watch(
   }
 
   .navlinks {
-    width: 100%;
-    max-height: 0;
-    grid-column: 1 / -1;
-    grid-row: 2;
+    width: auto;
+    max-height: calc(100svh - 64px);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 40;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    overflow: hidden;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 14px 16px 18px;
+    border-top: 1px solid rgba(199, 200, 173, 0.45);
+    border-bottom: 1px solid rgba(199, 200, 173, 0.7);
+    background: rgba(251, 250, 231, 0.98);
+    box-shadow: 0 14px 28px rgba(27, 28, 17, 0.14);
+    overflow-x: hidden;
+    overflow-y: auto;
     opacity: 0;
     pointer-events: none;
+    transform: translateY(-8px);
+    visibility: hidden;
     transition:
-      max-height 220ms ease,
-      opacity 160ms ease;
+      opacity 160ms ease,
+      transform 180ms ease,
+      visibility 180ms ease;
   }
 
   .navlinks--open {
-    max-height: 80vh;
-    overflow-y: auto;
     opacity: 1;
     pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
   }
 
   .main-menu__group {
     min-width: 0;
+    width: 100%;
+    position: static;
   }
 
   .main-menu__section {
     width: 100%;
-    min-height: 42px;
-    padding: 10px 12px;
+    min-height: 46px;
+    padding: 11px 16px;
     border: 1px solid rgba(199, 200, 173, 0.6);
-    background: rgba(255, 255, 255, 0.48);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.72);
+    font-size: 12px;
+    line-height: 18px;
     text-align: center;
     white-space: normal;
   }
 
+  .main-menu__group--open .main-menu__section {
+    border-color: rgba(90, 100, 0, 0.28);
+    background: rgba(190, 208, 0, 0.18);
+  }
+
   .main-menu__dropdown {
+    width: 100%;
     min-width: 0;
     max-height: 0;
     position: static;
     margin-top: 0;
-    padding: 0 6px;
-    gap: 4px;
+    left: auto;
+    padding: 0 8px;
+    gap: 6px;
     border: 0;
     background: transparent;
     box-shadow: none;
@@ -431,25 +541,53 @@ watch(
     display: none;
   }
 
-  .main-menu__group--open .main-menu__dropdown,
-  .main-menu__group:focus-within .main-menu__dropdown {
-    max-height: 260px;
-    margin-top: 6px;
+  .main-menu__group--open .main-menu__dropdown {
+    max-height: 560px;
+    margin-top: 8px;
     pointer-events: auto;
+    transform: none;
   }
 
   .main-menu__dropdown-link {
-    min-height: 36px;
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 10px 14px;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(199, 200, 173, 0.45);
+    border-radius: 7px;
+    background: #fff;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 18px;
     text-align: center;
     white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .main-menu__dropdown-link:hover,
+  .main-menu__dropdown-link:focus-visible,
+  .main-menu__dropdown-link--active {
+    background: var(--primary-bright);
+    color: #4e5600;
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 359.98px) {
+  .topbar__inner {
+    padding-inline: 10px;
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    gap: 6px;
+  }
+
+  .menu-toggle,
+  .main-menu__home {
+    width: 42px;
+  }
+
   .navlinks {
-    grid-template-columns: 1fr;
+    padding-inline: 10px;
   }
 }
 </style>
