@@ -15,6 +15,24 @@ const menuRef = ref(null)
 const menuAbierto = ref(false)
 const grupoAbierto = ref(null)
 
+const titulosBotonera = {
+  primer_hallazgo: 'Hallazgos en Motociclistas',
+  segundo_hallazgo: 'Hallazgos en Empatía',
+  tercer_hallazgo: 'Hallazgos en Mal Parqueo',
+  motociclistas: 'Contexto de Motociclistas',
+  motociclistas_b: 'La Estrategia',
+  motociclistas_implementaciones: 'Implementación de la Estrategia',
+  empatia_a: 'Contexto de Empatía',
+  empatia_b: 'La Estrategia',
+  empatia_c: 'Implementación de la Estrategia',
+  laboratorios_a: 'Contexto Laboratorios',
+  laboratorios_b: 'De la solución en la vía a la conversación en el barrio',
+  laboratorios_c: 'Laboratorios Implementados',
+  laboratorios_videos: 'Memoria social',
+  escuela_multiplicadores: 'Escuela de Multiplicadores',
+  aprendizajes_a: 'Aprendizajes',
+}
+
 const seccionesBase = [
   {
     key: 'hallazgos',
@@ -194,7 +212,7 @@ onBeforeUnmount(() => {
               :to="{ name: 'contenidos', params: { key: vista.key } }"
               @click="cerrarTodo"
             >
-              {{ vista.title }}
+              {{ titulosBotonera[vista.key] || vista.title }}
             </RouterLink>
           </div>
         </div>
