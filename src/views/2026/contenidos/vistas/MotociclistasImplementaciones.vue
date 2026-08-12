@@ -452,8 +452,9 @@ const acciones = [
   .motociclistas-implementaciones {
     height: auto;
     min-height: 100svh;
+    padding: 28px 32px 40px;
     grid-template-columns: 1fr;
-    overflow: auto;
+    overflow: visible;
   }
 
   .motociclistas-implementaciones__divider {
@@ -467,39 +468,105 @@ const acciones = [
 
 @media (max-width: 700px) {
   .motociclistas-implementaciones {
-    padding: 28px 20px;
+    min-height: 100svh;
+    padding: 20px 16px 32px;
+    gap: 20px;
+    border-top: 5px solid #bed000;
   }
 
-  .implementaciones-table__head,
-  .action-row,
-  .video-card {
-    grid-template-columns: 1fr;
+  .implementaciones-panel__eyebrow {
+    margin-bottom: 10px;
+    font-size: clamp(24px, 9vw, 32px);
   }
 
-  .implementaciones-table__head > div + div,
+  .implementaciones-panel h1,
+  .resultados-panel h2 {
+    font-size: clamp(30px, 9vw, 38px);
+  }
+
+  .section-mark {
+    width: 72px;
+    height: 4px;
+    margin: 9px 0 12px;
+  }
+
+  .implementaciones-table {
+    border-radius: 12px;
+  }
+
+  .implementaciones-table__head {
+    display: none;
+  }
+
+  .action-row {
+    min-height: 0;
+    display: block;
+  }
+
   .action-row__scope {
     border-left: 0;
     border-top: 1px solid rgba(190, 208, 0, 0.28);
   }
 
   .action-row__name {
-    grid-template-columns: 62px minmax(0, 1fr);
-    gap: 18px;
-    padding: 22px 18px;
+    grid-template-columns: 54px minmax(0, 1fr);
+    gap: 14px;
+    padding: 18px 14px;
   }
 
   .action-row__name span {
-    width: 62px;
-    height: 62px;
-    font-size: 34px;
+    width: 54px;
+    height: 54px;
+    font-size: 30px;
+  }
+
+  .action-row__name h2 {
+    font-size: 20px;
+    line-height: 1.12;
   }
 
   .action-row__scope {
-    padding: 18px;
+    padding: 14px;
+    gap: 11px;
   }
 
   .action-row__scope p {
-    grid-template-columns: 44px minmax(0, 1fr);
+    grid-template-columns: 34px auto minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .action-row__scope i {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .action-row__scope strong {
+    font-size: 20px;
+    line-height: 1.1;
+  }
+
+  .resultados-panel {
+    gap: 20px;
+  }
+
+  .video-card {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+  }
+
+  .video-card img {
+    min-height: 0;
+  }
+
+  .video-card__overlay i {
+    width: 70px;
+    height: 70px;
+    font-size: 58px;
   }
 
 }

@@ -47,7 +47,10 @@ onBeforeUnmount(() => {
       </p>
     </header>
 
-    <section class="tercer-hallazgo__column" aria-label="Mal parqueo como estrategia">
+    <section
+      class="tercer-hallazgo__column tercer-hallazgo__column--parking"
+      aria-label="Mal parqueo como estrategia"
+    >
       <p class="tercer-hallazgo__lead">
         El <strong>mal parqueo</strong> es un buen ejemplo: no siempre se vive como un error, sino
         como una forma de salir del paso.
@@ -62,7 +65,10 @@ onBeforeUnmount(() => {
       <p class="tercer-hallazgo__question">¿Qué necesidad está resolviendo esa conducta?</p>
     </section>
 
-    <section class="tercer-hallazgo__column" aria-label="Decisiones al final de la noche">
+    <section
+      class="tercer-hallazgo__column tercer-hallazgo__column--night"
+      aria-label="Decisiones al final de la noche"
+    >
       <p>
         Algo similar ocurre con la <strong>embriaguez al volante</strong>. La mayoría sabe que no
         debe manejar después de tomar, pero muchas personas terminan haciéndolo porque no planearon
@@ -97,7 +103,7 @@ onBeforeUnmount(() => {
         rel="noreferrer"
         :aria-label="`Ver imagen ampliada: ${imagen.alt}`"
       >
-        <img :src="imagen.src" :alt="imagen.alt" />
+        <img :src="imagen.src" :alt="imagen.alt" loading="lazy" decoding="async" />
       </a>
     </div>
   </main>
@@ -126,6 +132,14 @@ onBeforeUnmount(() => {
 .tercer-hallazgo__column {
   min-width: 0;
   align-self: center;
+}
+
+.tercer-hallazgo__column--parking {
+  grid-column: 1;
+}
+
+.tercer-hallazgo__column--night {
+  grid-column: 2;
 }
 
 .tercer-hallazgo__header {
@@ -256,31 +270,121 @@ onBeforeUnmount(() => {
   .tercer-hallazgo {
     height: auto;
     min-height: 100svh;
-    padding: 28px 24px;
+    padding: 24px 24px 40px;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    row-gap: 28px;
+    grid-template-areas:
+      'header'
+      'media'
+      'parking'
+      'night';
+    row-gap: 24px;
     align-items: flex-start;
-    border-left-width: 6px;
+    border-left-width: 0;
+    border-top: 6px solid #bed000;
+    overflow: visible;
   }
 
   .tercer-hallazgo__header,
-  .tercer-hallazgo__column {
+  .tercer-hallazgo__column,
+  .tercer-hallazgo__media {
     align-self: auto;
   }
 
-  .tercer-hallazgo__header,
-  .tercer-hallazgo__media {
+  .tercer-hallazgo__header {
+    grid-area: header;
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .tercer-hallazgo__column--parking {
+    grid-area: parking;
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .tercer-hallazgo__column--night {
+    grid-area: night;
     grid-column: auto;
     grid-row: auto;
   }
 
   .tercer-hallazgo__media {
-    max-width: 520px;
+    grid-area: media;
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    max-width: none;
+  }
+
+  .tercer-hallazgo__column {
+    padding-top: 20px;
+    border-top: 1px solid rgba(90, 100, 0, 0.24);
+  }
+
+  .tercer-hallazgo h1 {
+    font-size: clamp(32px, 7vw, 40px);
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .tercer-hallazgo__subtitle {
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .tercer-hallazgo__column p {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .tercer-hallazgo__column p + p {
+    margin-top: 14px;
+  }
+
+  .tercer-hallazgo__lead {
+    font-size: 21px !important;
+    line-height: 1.2 !important;
+  }
+
+  .tercer-hallazgo__question,
+  .tercer-hallazgo__closing {
+    padding: 12px 14px;
+  }
+
+  .tercer-hallazgo__question {
+    font-size: 19px !important;
   }
 
   .tercer-hallazgo__figure {
     aspect-ratio: 16 / 9;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .tercer-hallazgo {
+    padding: 20px 16px 32px;
+    row-gap: 20px;
+    border-top-width: 5px;
+  }
+
+  .tercer-hallazgo__eyebrow {
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  .tercer-hallazgo h1 {
+    font-size: clamp(30px, 9.5vw, 38px);
+  }
+
+  .tercer-hallazgo__column {
+    padding-top: 16px;
+  }
+
+  .tercer-hallazgo__lead {
+    font-size: 20px !important;
   }
 }
 </style>
